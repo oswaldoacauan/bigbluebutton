@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedDate } from 'react-intl';
 import Modal from '/imports/ui/components/modal/component';
 
 const intlMessages = defineMessages({
@@ -74,11 +74,22 @@ class PresentationUploder extends Component {
         <p>{intl.formatMessage(intlMessages.message)}</p>
         <table>
           <tbody>
-          { presentations.map(p =>
+          { presentations.map(item =>
             <tr>
               <td></td>
-              <th>{p.filename}</th>
-              <th>{p.filename}</th>
+              <th>{item.filename}</th>
+              <td>
+                <time dateTime={item.uploadedAt}>
+                  <FormattedDate
+                    value={item.uploadedAt}
+                    day="2-digit"
+                    month="2-digit"
+                    year="numeric"
+                    hour="2-digit"
+                    minute="2-digit"
+                  />
+                </time>
+              </td>
             </tr>
           )}
           </tbody>

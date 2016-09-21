@@ -3,12 +3,16 @@ import styles from './styles.scss';
 
 import Button from '../button/component';
 
+import { showModal } from '../app/service';
+import PresentationUploader from '../presentation-uploader/container';
+
 export default class ActionsBar extends Component {
   constructor(props) {
     super(props);
   }
 
   handleClick() {
+    showModal(<PresentationUploader />);
   }
 
   render() {

@@ -11,6 +11,7 @@ const getPresentations = () =>
       _id: p._id,
       id: p.presentation.id,
       filename: p.presentation.name,
+      uploadedAt: new Date(),
       isCurrent: p.presentation.current,
     }));
 

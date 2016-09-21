@@ -74,6 +74,9 @@ eventEmitter.on('presentation_removed_message', function (arg) {
 eventEmitter.on('presentation_shared_message', function (arg) {
   const payload = arg.payload;
   const meetingId = payload.meeting_id;
+  console.log('----------------------------------------------');
+  console.log(arg);
+  console.log('----------------------------------------------');
   if (payload.presentation != null && payload.presentation.id != null && meetingId != null) {
     const presentationId = payload.presentation.id;
 
@@ -108,6 +111,9 @@ eventEmitter.on('get_presentation_info_reply', function (arg) {
   const REDIS_CONFIG = Meteor.settings.redis;
 
   if (inReplyToHTML5Client(arg)) {
+    console.log('----------------------------------------------');
+    console.log(arg);
+    console.log('----------------------------------------------');
     const payload = arg.payload;
     const meetingId = payload.meeting_id;
     const presentations = payload.presentations;
