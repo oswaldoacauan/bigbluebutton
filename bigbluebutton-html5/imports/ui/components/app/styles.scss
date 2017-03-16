@@ -12,6 +12,7 @@ $bars-padding: $lg-padding-x - .45rem; // -.45 so user-list and chat title is al
 }
 
 .navbar {
+  flex: 0;
   position: relative;
   text-align: center;
   z-index: 10;
@@ -148,13 +149,8 @@ $bars-padding: $lg-padding-x - .45rem; // -.45 so user-list and chat title is al
 }
 
 .media {
-  @extend %full-page;
   flex: 1;
   order: 1;
-
-  @include mq($small-only) {
-    padding-bottom: $actionsbar-height;
-  }
 }
 
 .closedCaptions {
@@ -164,13 +160,8 @@ $bars-padding: $lg-padding-x - .45rem; // -.45 so user-list and chat title is al
 }
 
 .actionsbar {
+  flex: 0;
   padding: $bars-padding;
   position: relative;
   order: 3;
-
-  @include mq($small-only) {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
 }
