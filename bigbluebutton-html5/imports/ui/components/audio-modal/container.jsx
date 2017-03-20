@@ -9,7 +9,7 @@ export default class AudioModalContainer extends Component {
   }
 
   render() {
-
+    return null;
     let handleJoinListenOnly = () => {
       return joinListenOnly();
     };

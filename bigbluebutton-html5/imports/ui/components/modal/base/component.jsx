@@ -4,58 +4,64 @@ import styles from './styles.scss';
 import cx from 'classnames';
 
 const propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onShow: PropTypes.func,
-  onHide: PropTypes.func,
-  isTransparent: PropTypes.bool
 };
 
 const defaultProps = {
   isOpen: false,
+  contentLabel: 'Modal',
 };
 
 export default class ModalBase extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isOpen: this.props.isOpen,
+    };
+
+    this.contentLabel = props.contentLabel;
+    this.portalClassName = styles.portal;
+    this.overlayClassName = styles.overlay;
+
     this.handleAfterOpen = this.handleAfterOpen.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
-  handleAfterOpen() {
-    const { onShow } = this.props;
-    if (onShow) {
-      onShow.call(this, ...arguments);
-    }
+  open(cb) {
+    this.setState({ isOpen: true }, cb);
   }
 
+  close(cb) {
+    this.setState({ isOpen: false }, cb);
+  }
+
+  // @override
+  handleAfterOpen() {
+  }
+
+  // @override
   handleRequestClose() {
-    const { onHide } = this.props;
-    if (onHide) {
-      onHide.call(this, ...arguments);
-    }
+  }
+
+  // @override
+  renderContent() {
+    return null;
   }
 
   render() {
-    const {
-      isOpen,
-      onShow,
-      onHide,
-      className,
-      isTransparent,
-    } = this.props;
-
-    let styleOverlay = (isTransparent) ? styles.transparentOverlay : styles.overlay;
+    const { className } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <ReactModal
-      className={cx(styles.modal, className)}
-      overlayClassName={styleOverlay}
-      portalClassName={styles.portal}
-      isOpen={isOpen}
-      onAfterOpen={this.handleAfterOpen}
-      onRequestClose={this.handleRequestClose}>
-        {this.props.children}
+        contentLabel={this.contentLabel}
+        className={cx(styles.modal, className)}
+        overlayClassName={this.overlayClassName}
+        portalClassName={this.portalClassName}
+        isOpen={isOpen}
+        onAfterOpen={this.handleAfterOpen}
+        onRequestClose={this.handleRequestClose}>
+        {this.renderContent()}
       </ReactModal>
     );
   }

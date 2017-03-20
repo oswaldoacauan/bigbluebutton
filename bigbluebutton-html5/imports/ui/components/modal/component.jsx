@@ -32,69 +32,44 @@ const defaultProps = {
   },
 };
 
-export default class Modal extends Component {
+export default class Modal extends ModalBase {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: this.props.isOpen,
-    };
-
-    this.handleDismiss = this.handleDismiss.bind(this);
-    this.handleConfirm = this.handleConfirm.bind(this);
+    this.contentLabel = props.title;
   }
 
-  handleDismiss() {
-    const { dismiss } = this.props;
-    dismiss.callback(...arguments);
-    this.setState({ isOpen: false });
-    clearModal();
+  handleAction(action) {
+    this.close(this.props[action].callback(...arguments));
   }
 
-  handleConfirm() {
-    const { confirm } = this.props;
-    confirm.callback(...arguments);
-    this.setState({ isOpen: false });
-    clearModal();
+  componentWillUnmount() {
+    alert('james');
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isOpen !== this.props.isOpen
-      && this.state.isOpen !== this.props.isOpen) {
-      this.setState({ isOpen: this.props.isOpen });
-    }
-  }
-
-  render() {
+  renderContent() {
     const {
       title,
       dismiss,
       confirm,
-    } = this.props;
-
-    const { isOpen } = this.state;
+    } = this.props;;
 
     return (
-      <ModalBase
-        className={styles.modal}
-        isOpen={isOpen}
-        onHide={dismiss.callback}
-        onShow={this.props.onShow}
-      >
+      <div>
         <header className={styles.header}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.actions}>
             <Button
               className={styles.dismiss}
               label={dismiss.label}
-              onClick={this.handleDismiss}
+              onClick={this.handleAction.bind(this, 'dismiss')}
               aria-describedby={'modalDismissDescription'}
               tabIndex={0} />
             <Button
               color={'primary'}
               className={styles.confirm}
               label={confirm.label}
-              onClick={this.handleConfirm}
+              onClick={this.handleAction.bind(this, 'confirm')}
               aria-describedby={'modalConfirmDescription'}
               tabIndex={0} />
           </div>
@@ -104,7 +79,7 @@ export default class Modal extends Component {
         </div>
         <div id="modalDismissDescription" hidden>{dismiss.description}</div>
         <div id="modalConfirmDescription" hidden>{confirm.description}</div>
-      </ModalBase>
+      </div>
     );
   }
 };

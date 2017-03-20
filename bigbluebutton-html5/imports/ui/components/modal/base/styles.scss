@@ -20,11 +20,7 @@
   }
 }
 
-.transparentOverlay {
-  background: transparentize($color-gray-dark, .40) !important;
-}
-
-.overlay, .transparentOverlay {
+.overlay {
   z-index: 1000;
   background: #fff;
   display: flex;
