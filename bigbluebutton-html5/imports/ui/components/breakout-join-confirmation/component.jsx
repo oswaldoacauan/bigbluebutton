@@ -71,4 +71,4 @@ class BreakoutJoinConfirmation extends Component {
   }
 };
 
-export default injectIntl(BreakoutJoinConfirmation);
+export default withModalMounter(injectIntl(BreakoutJoinConfirmation));
