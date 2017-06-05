@@ -5,8 +5,12 @@
     "start": "cd app;./start.sh",
     "preinstall": "npm install grunt-cli",
     "test": "cd app;JASMINE_BROWSER=PhantomJS JASMINE_MIRROR_PORT=3000 meteor run --test",
-    "lint": "eslint . --ext .jsx,.js"
+    "lint": "eslint . --ext .jsx,.js",
+    "lint-commit": "LIST=`git diff-index --name-only HEAD | grep 'js$\\|jsx$' | xargs -I __ -n 1 echo  '../__'`; if [ $LIST ]; then eslint $LIST; fi"
   },
+  "pre-commit": [
+    "lint-commit"
+  ],
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "classnames": "^2.2.5",
@@ -53,7 +57,8 @@
     "postcss-modules-local-by-default": "1.2.0",
     "postcss-modules-scope": "1.1.0",
     "postcss-modules-values": "1.3.0",
-    "postcss-nested": "2.0.2"
+    "postcss-nested": "2.0.2",
+    "pre-commit": "^1.2.2"
   },
   "cssModules": {
     "extensions": [
