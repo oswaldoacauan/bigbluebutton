@@ -4,8 +4,12 @@
   "scripts": {
     "start": "cd app;./start.sh",
     "preinstall": "npm install grunt-cli",
+    "precommit": "npm run lint-commit",
+    "prepush": "npm run lint-push",
     "test": "cd app;JASMINE_BROWSER=PhantomJS JASMINE_MIRROR_PORT=3000 meteor run --test",
-    "lint": "eslint . --ext .jsx,.js"
+    "lint": "eslint . --ext .jsx,.js",
+    "lint-commit": "LIST=`git diff-index --name-only HEAD | grep 'js$\\|jsx$' | xargs -I __ -n 1 echo  '../__'`; if [ $LIST ]; then eslint $LIST; fi",
+    "lint-push": "LIST=`git diff --name-only $(git merge-base master HEAD) | grep 'js$\\|jsx$' | xargs -I __ -n 1 echo  '../__'`; if [ $LIST ]; then eslint $LIST; fi"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -48,6 +52,7 @@
     "grunt-jscs": "~2.8.0",
     "grunt-newer": "~1.2.0",
     "grunt-shell": "~1.2.1",
+    "husky": "^0.13.4",
     "load-grunt-tasks": "~3.4.1",
     "postcss-modules-extract-imports": "1.1.0",
     "postcss-modules-local-by-default": "1.2.0",
