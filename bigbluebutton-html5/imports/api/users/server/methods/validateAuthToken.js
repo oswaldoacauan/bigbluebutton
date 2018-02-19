@@ -24,6 +24,8 @@ export default function validateAuthToken(credentials) {
     userId: requesterUserId,
   });
 
+  this.setUserId(requesterUserId);
+
   if (!User) {
     createDummyUser(meetingId, requesterUserId, requesterToken);
   } else if (User.validated) {

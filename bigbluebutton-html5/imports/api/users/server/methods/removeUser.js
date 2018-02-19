@@ -18,5 +18,27 @@ export default function removeUser(credentials, userId) {
     ejectedBy: requesterUserId,
   };
 
+
+  const serverSessions = Meteor.server.sessions;
+
+  Object.keys(serverSessions)
+    .forEach((k) => {
+      serverSessions[k].connectionHandle.close();
+    });
+
+  // Object.keys(serverSessions)
+  //   .filter(i => serverSessions[i].userId == userId)
+  //   .reduce((sessions, key) => sessions[key], serverSessions)
+  //   .connectionHandle.close();
+  // .filter(key => Meteor.server.sessions[key].userId === userId);
+
+  console.error(Object.keys(Meteor.server.sessions)
+    .filter(i => Meteor.server.sessions[i].userId == userId)
+    .reduce((sessions, key) => sessions[key], Meteor.server.sessions));
+
+
+  // .reduce((obj, key) => obj[key], {})
+  //
+
   return RedisPubSub.publishUserMessage(CHANNEL, EVENT_NAME, meetingId, requesterUserId, payload);
 }

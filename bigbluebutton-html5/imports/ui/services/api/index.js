@@ -15,6 +15,8 @@ export function makeCall(name, ...args) {
 
   const { credentials } = Auth;
 
+  Meteor.connection.setUserId(credentials.requesterUserId);
+
   return new Promise((resolve, reject) => {
     Meteor.call(name, credentials, ...args, (error, result) => {
       if (error) {

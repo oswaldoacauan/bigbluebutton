@@ -14,6 +14,9 @@ export default function setEmojiStatus(credentials, userId, status) {
   check(requesterUserId, String);
   check(userId, String);
 
+  console.error(`++++++++++++++++++++++++++++++++++++++++++++++++++++++${this.userId}`);
+  console.error(`++++++++++++++++++++++++++++++++++++++++++++++++++++++2${this.userId}`);
+
   const payload = {
     emoji: status,
     userId,

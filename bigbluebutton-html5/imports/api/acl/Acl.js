@@ -40,8 +40,10 @@ export default class Acl {
       return permissions.some(internalAcl => (this.fetchPermission(permission, internalAcl)));
     } else if (Match.test(permissions, Object)) {
       if (permission.indexOf('.') > -1) {
-        return this.fetchPermission(permission.substring(permission.indexOf('.') + 1),
-          permissions[permission.substring(0, permission.indexOf('.'))]);
+        return this.fetchPermission(
+          permission.substring(permission.indexOf('.') + 1),
+          permissions[permission.substring(0, permission.indexOf('.'))],
+        );
       }
       return permissions[permission];
     }
