@@ -26,6 +26,8 @@ export default function sendAnnotation(credentials, annotation) {
   const CHANNEL = REDIS_CONFIG.channels.toAkkaApps;
   const EVENT_NAME = 'SendWhiteboardAnnotationPubMsg';
 
+  this.unblock();
+
   const { meetingId, requesterUserId, requesterToken } = credentials;
 
   check(meetingId, String);

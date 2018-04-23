@@ -184,6 +184,11 @@ class RedisPubSub {
     return this.emitter.on(...args);
   }
 
+  publish(channel, envelope) {
+    console.error('[publish]', channel);
+    Meteor.defer(() => this.pub.publish(channel, envelope, RedisPubSub.handlePublishError))
+  }
+
   publishVoiceMessage(channel, eventName, voiceConf, payload) {
     const header = {
       name: eventName,
@@ -192,7 +197,7 @@ class RedisPubSub {
 
     const envelope = makeEnvelope(channel, eventName, header, payload);
 
-    return this.pub.publish(channel, envelope, RedisPubSub.handlePublishError);
+    return this.publish(channel, envelope);
   }
 
   publishSystemMessage(channel, eventName, payload) {
@@ -202,7 +207,7 @@ class RedisPubSub {
 
     const envelope = makeEnvelope(channel, eventName, header, payload);
 
-    return this.pub.publish(channel, envelope, RedisPubSub.handlePublishError);
+    return this.publish(channel, envelope);
   }
 
   publishMeetingMessage(channel, eventName, meetingId, payload) {
@@ -213,7 +218,7 @@ class RedisPubSub {
 
     const envelope = makeEnvelope(channel, eventName, header, payload);
 
-    return this.pub.publish(channel, envelope, RedisPubSub.handlePublishError);
+    return this.publish(channel, envelope);
   }
 
   publishUserMessage(channel, eventName, meetingId, userId, payload) {
@@ -225,7 +230,7 @@ class RedisPubSub {
 
     const envelope = makeEnvelope(channel, eventName, header, payload);
 
-    return this.pub.publish(channel, envelope, RedisPubSub.handlePublishError);
+    return this.publish(channel, envelope);
   }
 }
 
