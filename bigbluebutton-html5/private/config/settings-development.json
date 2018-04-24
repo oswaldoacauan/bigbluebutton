@@ -57,11 +57,11 @@
     },
 
     "kurento": {
-      "wsUrl": "HOST",
+      "wsUrl": "wss://bbb-joao.dev.imdt.com.br/bbb-webrtc-sfu",
       "chromeExtensionKey": "KEY",
       "chromeExtensionLink": "LINK",
       "enableScreensharing": false,
-      "enableVideo": false
+      "enableVideo": true
     },
 
     "acl": {
@@ -322,6 +322,21 @@
     }
   },
 
+  "redisOplog": {
+    "redis": {
+      "port": 6379,
+      "host": "127.0.0.1",
+      "prefix": "meteorOplog::"
+    },
+    "retryIntervalMs": 10000,
+    "mutationDefaults": {
+        "optimistic": true,
+        "pushToRedis": true
+    },
+    "debug": false,
+    "overridePublishFunction": true
+  },
+
   "private": {
 
     "app": {
@@ -352,7 +367,7 @@
 
 
     "log": {
-      "level": "info"
+      "level": "error"
     }
   }
 }
