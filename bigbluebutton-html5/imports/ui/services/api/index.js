@@ -1,6 +1,9 @@
 import Auth from '/imports/ui/services/auth';
 import { check } from 'meteor/check';
 import { notify } from '/imports/ui/services/notification';
+import { DDP } from 'meteor/ddp-client';
+
+const DPPConnection = DDP.connect(window.location.origin.concat(Meteor.settings.public.app.basename));
 
 /**
  * Send the request to the server via Meteor.call and don't treat errors.
@@ -16,7 +19,7 @@ export function makeCall(name, ...args) {
   const { credentials } = Auth;
 
   return new Promise((resolve, reject) => {
-    Meteor.call(name, credentials, ...args, (error, result) => {
+    DPPConnection.call(name, credentials, ...args, (error, result) => {
       if (error) {
         reject(error);
       }
@@ -57,7 +60,7 @@ export function log(type = 'error', message, ...args) {
 
   console.debug(`CLIENT LOG (${type.toUpperCase()}): `, messageOrStack, ...args);
 
-  Meteor.call('logClient', type, messageOrStack, {
+  DPPConnection.call('logClient', type, messageOrStack, {
     clientInfo,
     credentials,
     ...args,
