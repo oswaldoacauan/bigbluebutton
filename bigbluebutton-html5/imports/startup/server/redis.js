@@ -26,9 +26,9 @@ const makeEnvelope = (channel, eventName, header, body) => {
   return JSON.stringify(envelope);
 };
 
-const makeDebugger = enabled => (message) => {
+const makeDebugger = enabled => (message, type = 'info') => {
   if (!enabled) return;
-  Logger.info(`REDIS: ${message}`);
+  Logger(type, `REDIS: ${message}`);
 };
 
 class MettingMessageQueue {
@@ -69,7 +69,7 @@ class MettingMessageQueue {
     };
 
     const onError = (reason) => {
-      this.debug(`${eventName}: ${reason.stack ? reason.stack : reason}`);
+      this.debug(`${eventName}: ${reason.stack ? reason.stack : reason}`, 'error');
       callNext();
     };
 

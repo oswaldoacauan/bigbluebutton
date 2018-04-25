@@ -93,11 +93,11 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
 
   // a helper func, to split the initial annotation.points into subdocuments
   // returns an array of { selector, modifier } objects for subdocuments.
-  const createPencilObjects = () => {
+  const createPencilObjects = (lastChunkLength = 0) => {
     const chunks = [];
     // if the length of the points < PENCIL_CHUNK_SIZE then we simply return an array with one chunk
     if (annotationInfo.points.length < PENCIL_CHUNK_SIZE) {
-      const chunkId = `${id}--${1}`;
+      const chunkId = `${id}--${lastChunkLength + 1}`;
       chunks.push({
         selector: {
           meetingId,
@@ -128,7 +128,7 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
     let i = 0;
     let counter = 1;
     for (; i <= annotationInfo.points.length; i += PENCIL_CHUNK_SIZE, counter += 1) {
-      const chunkId = `${id}--${counter}`;
+      const chunkId = `${id}--${lastChunkLength + counter}`;
 
       // we always need to attach the last coordinate from the previous subdocument
       // to the front of the current subdocument, to connect the pencil path
@@ -181,121 +181,52 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
         ],
       };
 
-      // upserting all the chunks
-      for (let i = 0; i < chunks.length; i += 1) {
-        Annotations.upsert(chunks[i].selector, chunks[i].modifier);
-      }
+      // inerting all the chunks
+      chunks.forEach(chunk => Annotations.insert({ ...chunk.modifier.$set, ...chunk.modifier.$inc }));
 
       // base will be updated in the main addAnnotation event
       return { selector: baseSelector, modifier: baseModifier };
     }
     case DRAW_UPDATE: {
-      // checking if "pencil_base" exists
-      if (Annotation) {
-        const { numberOfChunks, lastChunkLength } = Annotation;
-
-        // if lastChunkLength < PENCIL_CHUNK_SIZE then we can simply push points to the last object
-        if (lastChunkLength < PENCIL_CHUNK_SIZE) {
-          // creating a modifier for 'pencil_base'
-          baseModifier = {
-            $set: {
-              lastChunkLength: lastChunkLength + annotation.annotationInfo.points.length,
-              lastCoordinate: [
-                annotationInfo.points[annotationInfo.points.length - 2],
-                annotationInfo.points[annotationInfo.points.length - 1],
-              ],
-            },
-          };
-
-          const chunkId = `${id}--${numberOfChunks}`;
-          chunkSelector = {
-            meetingId,
-            userId,
-            id: chunkId,
-          };
-
-          // fetching the last pencil sub-document
-          const chunk = Annotations.findOne(chunkSelector);
-          // adding the coordinates to the end of the last sub-document
-          annotationInfo.points = chunk.annotationInfo.points.concat(annotationInfo.points);
-
-          chunkModifier = {
-            $set: {
-              annotationInfo,
-            },
-            $inc: { version: 1 },
-          };
-
-        // if lastChunkLength > PENCIL_CHUNK_SIZE then we need to create another chunk
-        } else if (lastChunkLength >= PENCIL_CHUNK_SIZE) {
-          baseModifier = {
-            $set: {
-              numberOfChunks: numberOfChunks + 1,
-              lastChunkLength: annotationInfo.points.length,
-              lastCoordinate: [
-                annotationInfo.points[annotationInfo.points.length - 2],
-                annotationInfo.points[annotationInfo.points.length - 1],
-              ],
-            },
-          };
-
-          const chunkId = `${id}--${numberOfChunks + 1}`;
-          chunkSelector = {
-            meetingId,
-            userId,
-            id: chunkId,
-          };
-
-          // pushing the last coordinate to the front of the current chunk's points
-          annotationInfo.points.unshift(Annotation.lastCoordinate[0], Annotation.lastCoordinate[1]);
-
-          chunkModifier = {
-            $set: {
-              whiteboardId,
-              meetingId,
-              userId,
-              id: chunkId,
-              status,
-              annotationType,
-              annotationInfo,
-              wbId,
-              position: Annotation.position,
-            },
-            $inc: { version: 1 },
-          };
-        }
-
-        // upserting the new subdocument
-        Annotations.upsert(chunkSelector, chunkModifier);
-        // base will be updated in the main AddAnnotation func
-        return { selector: baseSelector, modifier: baseModifier };
-      }
-
       // **default flow**
       // if we are here then it means that Annotation object is not in the db
       // So creating everything similar to DRAW_START case
-      const _chunks = createPencilObjects();
+      const _chunks = createPencilObjects(Annotation ? Annotation.numberOfChunks : 0);
 
-      // creating 'pencil_base' based on the info we received from createPencilObjects()
-      baseModifier = {
-        id,
-        userId,
-        meetingId,
-        whiteboardId,
-        position,
-        annotationType: 'pencil_base',
-        numberOfChunks: _chunks.length,
-        lastChunkLength: _chunks[_chunks.length - 1].length,
-        lastCoordinate: [
-          annotationInfo.points[annotationInfo.points.length - 2],
-          annotationInfo.points[annotationInfo.points.length - 1],
-        ],
-      };
+      if (Annotation) {
+        // pushing the last coordinate to the front of the current chunk's points
+        _chunks[_chunks.length - 1].modifier.$set.annotationInfo.points.unshift(Annotation.lastCoordinate[0], Annotation.lastCoordinate[1]);
+
+        baseModifier = {
+          $set: {
+            numberOfChunks: Annotation.numberOfChunks + _chunks.length,
+            lastChunkLength: _chunks[_chunks.length - 1].modifier.$set.annotationInfo.points.length,
+            lastCoordinate: [
+              annotationInfo.points[annotationInfo.points.length - 2],
+              annotationInfo.points[annotationInfo.points.length - 1],
+            ],
+          },
+        };
+      } else {
+        // creating 'pencil_base' based on the info we received from createPencilObjects()
+        baseModifier = {
+          id,
+          userId,
+          meetingId,
+          whiteboardId,
+          position,
+          annotationType: 'pencil_base',
+          numberOfChunks: _chunks.length,
+          lastChunkLength: _chunks[_chunks.length - 1].length,
+          lastCoordinate: [
+            annotationInfo.points[annotationInfo.points.length - 2],
+            annotationInfo.points[annotationInfo.points.length - 1],
+          ],
+        };
+      }
 
       // upserting all the chunks
-      for (let i = 0; i < _chunks.length; i += 1) {
-        Annotations.upsert(_chunks[i].selector, _chunks[i].modifier);
-      }
+      _chunks.forEach(chunk => Annotations.insert({ ...chunk.modifier.$set, ...chunk.modifier.$inc }));
 
       // base will be updated in the main AddAnnotation func
       return { selector: baseSelector, modifier: baseModifier };

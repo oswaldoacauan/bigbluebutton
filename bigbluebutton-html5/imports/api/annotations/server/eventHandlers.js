@@ -8,4 +8,4 @@ import handleWhiteboardAnnotations from './handlers/whiteboardAnnotations';
 RedisPubSub.on('ClearWhiteboardEvtMsg', handleWhiteboardCleared);
 RedisPubSub.on('UndoWhiteboardEvtMsg', handleWhiteboardUndo);
 RedisPubSub.on('SendWhiteboardAnnotationEvtMsg', handleWhiteboardSend);
-RedisPubSub.on('GetWhiteboardAnnotationsRespMsg', processForHTML5ServerOnly(handleWhiteboardAnnotations));
+// RedisPubSub.on('GetWhiteboardAnnotationsRespMsg', processForHTML5ServerOnly(handleWhiteboardAnnotations));
