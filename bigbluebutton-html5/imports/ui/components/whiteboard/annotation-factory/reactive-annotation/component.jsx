@@ -6,8 +6,8 @@ const ReactiveAnnotation = (props) => {
 
   return (
     <Component
-      version={props.annotation.version}
-      annotation={props.annotation.annotationInfo}
+      version={1}
+      annotation={props.annotation}
       slideWidth={props.slideWidth}
       slideHeight={props.slideHeight}
     />

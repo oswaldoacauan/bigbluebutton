@@ -18,8 +18,8 @@ export default class AnnotationFactory extends Component {
   static renderStaticAnnotation(annotationInfo, slideWidth, slideHeight, drawObject) {
     return (
       <StaticAnnotation
-        key={annotationInfo._id}
-        shapeId={annotationInfo._id}
+        key={annotationInfo.id}
+        shapeId={annotationInfo.id}
         drawObject={drawObject}
         slideWidth={slideWidth}
         slideHeight={slideHeight}
@@ -30,8 +30,8 @@ export default class AnnotationFactory extends Component {
   static renderReactiveAnnotation(annotationInfo, slideWidth, slideHeight, drawObject) {
     return (
       <ReactiveAnnotationContainer
-        key={annotationInfo._id}
-        shapeId={annotationInfo._id}
+        key={annotationInfo.id}
+        shapeId={annotationInfo.id}
         drawObject={drawObject}
         slideWidth={slideWidth}
         slideHeight={slideHeight}
@@ -49,18 +49,19 @@ export default class AnnotationFactory extends Component {
 
     if (annotationInfo.status === DRAW_END) {
       return AnnotationFactory.renderStaticAnnotation(
-          annotationInfo,
-          this.props.slideWidth,
-          this.props.slideHeight,
-          drawObject,
-        );
+        annotationInfo,
+        this.props.slideWidth,
+        this.props.slideHeight,
+        drawObject,
+      );
     }
+
     return AnnotationFactory.renderReactiveAnnotation(
-          annotationInfo,
-          this.props.slideWidth,
-          this.props.slideHeight,
-          drawObject,
-        );
+      annotationInfo,
+      this.props.slideWidth,
+      this.props.slideHeight,
+      drawObject,
+    );
   }
 
   render() {

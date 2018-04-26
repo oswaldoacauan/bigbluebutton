@@ -5,10 +5,11 @@ import ReactiveAnnotationService from './service';
 import ReactiveAnnotation from './component';
 
 const ReactiveAnnotationContainer = (props) => {
-  if (props.annotation) {
-    return (
+  if (props.annotations) {
+    return props.annotations.map(annotation =>
       <ReactiveAnnotation
-        annotation={props.annotation}
+        key={annotation._id}
+        annotation={annotation}
         slideWidth={props.slideWidth}
         slideHeight={props.slideHeight}
         drawObject={props.drawObject}
@@ -21,19 +22,19 @@ const ReactiveAnnotationContainer = (props) => {
 
 export default withTracker((params) => {
   const { shapeId } = params;
-  const annotation = ReactiveAnnotationService.getAnnotationById(shapeId);
-
+  const annotations = ReactiveAnnotationService.getAnnotationsById(shapeId);
+  // console.log(annotations);
   return {
-    annotation,
+    annotations,
   };
 })(ReactiveAnnotationContainer);
 
 ReactiveAnnotationContainer.propTypes = {
-  annotation: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-  ])),
+  // annotation: PropTypes.objectOf(PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.number,
+  //   PropTypes.object,
+  // ])),
   drawObject: PropTypes.func.isRequired,
   slideWidth: PropTypes.number.isRequired,
   slideHeight: PropTypes.number.isRequired,

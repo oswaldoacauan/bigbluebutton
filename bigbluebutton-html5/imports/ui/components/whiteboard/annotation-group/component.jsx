@@ -19,7 +19,7 @@ AnnotationGroup.propTypes = {
   // array of annotations, optional
   annotationsInfo: PropTypes.arrayOf(PropTypes.shape({
     status: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     annotationType: PropTypes.string.isRequired,
   })).isRequired,
 };

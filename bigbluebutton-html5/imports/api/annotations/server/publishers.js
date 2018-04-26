@@ -1,4 +1,5 @@
 import Annotations from '/imports/api/annotations';
+import AnnotationsChunks from '/imports/api/annotations-chunks';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Logger from '/imports/startup/server/logger';
@@ -13,7 +14,7 @@ function annotations(credentials) {
 
   Logger.info(`Publishing Annotations for ${meetingId} ${requesterUserId} ${requesterToken}`);
 
-  return Annotations.find({ meetingId });
+  return [Annotations.find({ meetingId }), AnnotationsChunks.find({ meetingId })];
 }
 
 function publish(...args) {

@@ -14,6 +14,7 @@ if (Meteor.isServer) {
 
   Annotations._ensureIndex({ id: 1 });
   Annotations._ensureIndex({ meetingId: 1, whiteboardId: 1, userId: 1 });
+  Annotations._ensureIndex({ id: 1, meetingId: 1, whiteboardId: 1, userId: 1 });
 }
 
 export default Annotations;

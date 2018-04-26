@@ -185,6 +185,7 @@ export default class PresentationArea extends Component {
                 </clipPath>
               </defs>
               <g clipPath="url(#viewBox)">
+                <text x="5" y="5">A:{this.props.annSize}|C:{this.props.chunkSize}</text>
                 <Slide
                   imageUri={imageUri}
                   svgWidth={width}

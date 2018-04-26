@@ -1,7 +1,8 @@
-import Annotations from '/imports/api/annotations';
+import AnnotationsChunks from '/imports/api/annotations-chunks';
 
-const getAnnotationById = _id => Annotations.findOne({
-  _id,
+const getAnnotationById = id => AnnotationsChunks.findOne({
+  annotationId: id,
+  status: { $eq: Meteor.settings.public.whiteboard.annotations.status.end },
 });
 
 export default {

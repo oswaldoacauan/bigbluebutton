@@ -15,7 +15,7 @@ const AnnotationGroupContainer = props => (
 export default withTracker((params) => {
   const { whiteboardId } = params;
   const annotationsInfo = AnnotationGroupService.getCurrentAnnotationsInfo(whiteboardId);
-
+  
   return {
     annotationsInfo,
   };
@@ -29,7 +29,7 @@ AnnotationGroupContainer.propTypes = {
   // array of annotations, optional
   annotationsInfo: PropTypes.arrayOf(PropTypes.shape({
     status: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     annotationType: PropTypes.string.isRequired,
   })).isRequired,
 };
