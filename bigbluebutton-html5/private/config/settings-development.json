@@ -342,7 +342,6 @@
         "from-akka-apps-*"
       ],
       "async": [
-        "from-akka-apps-wb-redis-channel"
       ],
       "ignored": [
         "CheckAlivePongSysMsg",
