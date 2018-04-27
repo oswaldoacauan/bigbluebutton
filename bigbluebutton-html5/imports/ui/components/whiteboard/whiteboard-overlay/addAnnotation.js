@@ -1,6 +1,15 @@
 import { check } from 'meteor/check';
-import Logger from '/imports/startup/server/logger';
-import Annotations from '/imports/api/annotations';
+// import Logger from '/imports/startup/server/logger';
+// import Annotations from '/imports/ui/components/whiteboard/whiteboard-overlay/addAnnotation'
+
+const Logger = {
+  info: () => null, //console.log,
+  error: () => null, //console.error,
+};
+
+const Annotations = new Mongo.Collection('annotation-fake', {connection: null});
+
+export default Annotations;
 
 const ANNOTATION_TYPE_TEXT = 'text';
 const ANNOTATION_TYPE_PENCIL = 'pencil';
@@ -65,14 +74,11 @@ function handleTextUpdate(meetingId, whiteboardId, userId, annotation) {
 }
 
 function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
-  // fetching annotation statuses from the config
-  const ANOTATION_STATUSES = Meteor.settings.public.whiteboard.annotations.status;
-  const DRAW_START = ANOTATION_STATUSES.start;
-  const DRAW_UPDATE = ANOTATION_STATUSES.update;
-  const DRAW_END = ANOTATION_STATUSES.end;
+  const DRAW_START = 'DRAW_START';
+  const DRAW_UPDATE = 'DRAW_UPDATE';
+  const DRAW_END = 'DRAW_END';
 
-  const SERVER_CONFIG = Meteor.settings.private.app;
-  const PENCIL_CHUNK_SIZE = SERVER_CONFIG.pencilChunkLength || 100;
+  const PENCIL_CHUNK_SIZE = 100;
 
   const {
     id, status, annotationType, annotationInfo, wbId, position,
@@ -194,40 +200,7 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
       if (Annotation) {
         const { numberOfChunks, lastChunkLength } = Annotation;
 
-        // if lastChunkLength < PENCIL_CHUNK_SIZE then we can simply push points to the last object
-        if (lastChunkLength < PENCIL_CHUNK_SIZE) {
-          // creating a modifier for 'pencil_base'
-          baseModifier = {
-            $set: {
-              lastChunkLength: lastChunkLength + annotation.annotationInfo.points.length,
-              lastCoordinate: [
-                annotationInfo.points[annotationInfo.points.length - 2],
-                annotationInfo.points[annotationInfo.points.length - 1],
-              ],
-            },
-          };
-
-          const chunkId = `${id}--${numberOfChunks}`;
-          chunkSelector = {
-            meetingId,
-            userId,
-            id: chunkId,
-          };
-
-          // fetching the last pencil sub-document
-          const chunk = Annotations.findOne(chunkSelector);
-          // adding the coordinates to the end of the last sub-document
-          annotationInfo.points = chunk.annotationInfo.points.concat(annotationInfo.points);
-
-          chunkModifier = {
-            $set: {
-              annotationInfo,
-            },
-            $inc: { version: 1 },
-          };
-
-        // if lastChunkLength > PENCIL_CHUNK_SIZE then we need to create another chunk
-        } else if (lastChunkLength >= PENCIL_CHUNK_SIZE) {
+        if (true) {
           baseModifier = {
             $set: {
               numberOfChunks: numberOfChunks + 1,
@@ -266,6 +239,7 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
         }
 
         // upserting the new subdocument
+        // console.log(lastChunkLength, chunkSelector, chunkModifier, baseSelector, baseModifier);
         Annotations.upsert(chunkSelector, chunkModifier);
         // base will be updated in the main AddAnnotation func
         return { selector: baseSelector, modifier: baseModifier };
@@ -345,12 +319,10 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
   }
 }
 
-export default function addAnnotation(meetingId, whiteboardId, userId, annotation) {
+export function addAnnotation(meetingId, whiteboardId, userId, annotation) {
   check(meetingId, String);
   check(whiteboardId, String);
   check(annotation, Object);
-
-  // console.error('server-hand', annotation);
 
   let query;
 

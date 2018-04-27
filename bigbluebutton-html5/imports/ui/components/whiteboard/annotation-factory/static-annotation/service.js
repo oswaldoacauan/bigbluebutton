@@ -1,4 +1,4 @@
-import Annotations from '/imports/api/annotations';
+import Annotations from '/imports/ui/components/whiteboard/whiteboard-overlay/addAnnotation'
 
 const getAnnotationById = _id => Annotations.findOne({
   _id,

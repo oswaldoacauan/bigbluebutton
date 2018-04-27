@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import AnnotationGroupService from './service';
 import AnnotationGroup from './component';
+import Annotations from '/imports/ui/components/whiteboard/whiteboard-overlay/addAnnotation'
 
 const AnnotationGroupContainer = props => (
   <AnnotationGroup

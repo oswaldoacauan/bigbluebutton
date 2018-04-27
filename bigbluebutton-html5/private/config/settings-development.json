@@ -352,7 +352,7 @@
 
 
     "log": {
-      "level": "info"
+      "level": "error"
     }
   }
 }

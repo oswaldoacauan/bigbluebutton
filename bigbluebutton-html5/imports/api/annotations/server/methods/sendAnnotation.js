@@ -28,10 +28,12 @@ export default function sendAnnotation(credentials, annotation) {
 
   const { meetingId, requesterUserId, requesterToken } = credentials;
 
+  // console.error('server-hand', annotation);
+
   check(meetingId, String);
   check(requesterUserId, String);
   check(requesterToken, String);
-  check(annotation, Object);
+  // check(annotation, Object);
 
   // We allow messages to pass through in 3 cases:
   // 1. When it's a standard message in presenter mode (Acl check)
@@ -46,6 +48,17 @@ export default function sendAnnotation(credentials, annotation) {
 
   if (!allowed) {
     throw new Meteor.Error('not-allowed', `User ${requesterUserId} is not allowed to send an annotation`);
+  }
+
+  if (annotation.length) {
+    annotation.forEach(a => {
+      const payload = {
+        annotation: a,
+      };
+
+      RedisPubSub.publishUserMessage(CHANNEL, EVENT_NAME, meetingId, requesterUserId, payload);
+    });
+    return;
   }
 
   const payload = {

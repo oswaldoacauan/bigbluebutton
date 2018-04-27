@@ -93,7 +93,7 @@ Base.propTypes = propTypes;
 Base.defaultProps = defaultProps;
 
 const SUBSCRIPTIONS_NAME = [
-  'users', 'chat', 'cursor', 'meetings', 'polls', 'presentations', 'annotations',
+  'users', 'chat', 'meetings', 'polls', 'presentations', 'annotations',
   'slides', 'captions', 'breakouts', 'voiceUsers', 'whiteboard-multi-user', 'screenshare',
 ];
 

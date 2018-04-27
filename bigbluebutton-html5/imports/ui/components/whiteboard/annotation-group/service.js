@@ -1,4 +1,4 @@
-import Annotations from '/imports/api/annotations';
+import Annotations from '/imports/ui/components/whiteboard/whiteboard-overlay/addAnnotation'
 
 const getCurrentAnnotationsInfo = (whiteboardId) => {
   if (!whiteboardId) {
@@ -7,7 +7,6 @@ const getCurrentAnnotationsInfo = (whiteboardId) => {
 
   return Annotations.find(
     {
-      whiteboardId,
       annotationType: { $ne: 'pencil_base' },
     },
     {

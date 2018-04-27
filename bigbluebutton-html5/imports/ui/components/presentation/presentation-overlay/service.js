@@ -1,6 +1,7 @@
 import { makeCall } from '/imports/ui/services/api';
 
 const updateCursor = (coordinates) => {
+  return;
   makeCall('publishCursorUpdate', coordinates);
 };
 
