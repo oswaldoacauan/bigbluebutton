@@ -1,5 +1,5 @@
 import { check } from 'meteor/check';
-import updateCursor from '../modifiers/updateCursor';
+import { CursorStreamer } from '/imports/api/cursor';
 
 export default function handleCursorUpdate({ header, body }, meetingId) {
   const userId = header.userId;
@@ -10,5 +10,5 @@ export default function handleCursorUpdate({ header, body }, meetingId) {
   check(x, Number);
   check(y, Number);
 
-  return updateCursor(meetingId, userId, x, y);
+  return CursorStreamer.emit('message', { meetingId, userId, x, y });
 }
