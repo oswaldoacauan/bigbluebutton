@@ -70,10 +70,10 @@ function handleAddedAnnotation(message) {
   });
 }
 
-// AnnotationsStreamer.on('added', handleAddedAnnotation);
-AnnotationsStreamer.on('added', message =>
-  setTimeout(() => handleAddedAnnotation(message), 250)
-);
+AnnotationsStreamer.on('added', handleAddedAnnotation);
+// AnnotationsStreamer.on('added', message =>
+//   setTimeout(() => handleAddedAnnotation(message), 250)
+// );
 
 function increase_brightness(hex, percent){
   hex = parseInt(hex, 10).toString(16).padStart(6, 0);
