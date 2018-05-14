@@ -23,7 +23,6 @@ function updateCursor(meetingId, userId, x = -1, y = -1) {
 }
 
 CursorStreamer.on('message', (message) => {
-  console.log('message', message);
   const { meetingId, userId, x, y } = message;
   if (Auth.meetingID === meetingId && Auth.userID === userId) return;
   updateCursor(meetingId, userId, x, y);

@@ -1,5 +1,5 @@
 import { check } from 'meteor/check';
-
+import { AnnotationsStreamer } from '/imports/api/annotations';
 import addAnnotation from '../modifiers/addAnnotation';
 
 export default function handleWhiteboardSend({ header, body }, meetingId) {
@@ -12,6 +12,6 @@ export default function handleWhiteboardSend({ header, body }, meetingId) {
   const whiteboardId = annotation.wbId;
 
   check(whiteboardId, String);
-
+  AnnotationsStreamer.emit('added', { meetingId, whiteboardId, userId, annotation });
   return addAnnotation(meetingId, whiteboardId, userId, annotation);
 }
