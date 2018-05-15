@@ -34,9 +34,7 @@ function handleCommonAnnotation(meetingId, whiteboardId, userId, annotation) {
 }
 
 function handleTextUpdate(meetingId, whiteboardId, userId, annotation) {
-  const {
-    id, status, annotationType, annotationInfo, wbId, position,
-  } = annotation;
+  const { id, status, annotationType, annotationInfo, wbId, position } = annotation;
 
   const selector = {
     meetingId,
