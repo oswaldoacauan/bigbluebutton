@@ -2,7 +2,7 @@ import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
 import { AnnotationsStreamer } from '/imports/api/annotations';
 import addAnnotationQuery from '/imports/api/annotations/addAnnotation';
-import { isEqual } from 'lodash';
+import { isEqual, isArray } from 'lodash';
 
 const Annotations = new Mongo.Collection(null);
 const Logger = {
@@ -10,8 +10,7 @@ const Logger = {
   error: console.error,
 };
 
-function handleAddedAnnotation(message) {
-  const { meetingId, whiteboardId, userId, annotation } = message;
+function handleAddedAnnotation({ meetingId, whiteboardId, userId, annotation }) {
   const isOwn = Auth.meetingID === meetingId && Auth.userID === userId;
   const query = addAnnotationQuery(meetingId, whiteboardId, userId, annotation);
 
@@ -70,7 +69,10 @@ function handleAddedAnnotation(message) {
   });
 }
 
-AnnotationsStreamer.on('added', handleAddedAnnotation);
+AnnotationsStreamer.on('added', ({ annotations }) => {
+  console.log('added', annotations);
+  annotations.forEach(annotation => handleAddedAnnotation(annotation));
+});
 // AnnotationsStreamer.on('added', message =>
 //   setTimeout(() => handleAddedAnnotation(message), 250)
 // );
@@ -95,11 +97,37 @@ function increase_brightness(hex, percent){
      ((0|(1<<8) + b + (256 - b) * percent / 100).toString(16)).substr(1), 16);
 }
 
+let annotationsQueue = [];
+//How many packets we need to have to use annotationsBufferTimeMax
+let annotationsMaxDelayQueueSize = 60;
+//Minimum bufferTime
+let annotationsBufferTimeMin = 30;
+//Maximum bufferTime
+let annotationsBufferTimeMax = 200;
+let annotationsSenderIsRunning = false;
+
+const proccessAnnotationsQueue = () => {
+  annotationsSenderIsRunning = true;
+  const queueSize = annotationsQueue.length;
+
+  if (!queueSize) {
+    annotationsSenderIsRunning = false;
+    return;
+  }
+
+  // console.log('annotationQueue.length', annotationsQueue, annotationsQueue.length);
+  AnnotationsStreamer.emit('publish', { credentials: Auth.credentials, payload: annotationsQueue });
+  annotationsQueue = [];
+  // ask tiago
+  const delayPerc = Math.min(annotationsMaxDelayQueueSize, queueSize) / annotationsMaxDelayQueueSize;
+  const delayDelta = annotationsBufferTimeMax - annotationsBufferTimeMin;
+  const delayTime = annotationsBufferTimeMin + (delayDelta * delayPerc);
+  setTimeout(proccessAnnotationsQueue, delayTime);
+}
+
 export function sendAnnotation(annotation) {
-  AnnotationsStreamer.emit('publish', {
-		credentials: Auth.credentials,
-		payload: annotation,
-	});
+  annotationsQueue.push(annotation);
+  if(!annotationsSenderIsRunning) setTimeout(proccessAnnotationsQueue, annotationsBufferTimeMin);
 
   // skip optimistic for draw end since the smoothing is done in akka
   if (annotation.status === "DRAW_END") return;

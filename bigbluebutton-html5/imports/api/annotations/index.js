@@ -19,8 +19,8 @@ if (Meteor.isServer) {
 
   import sendAnnotation from './server/methods/sendAnnotation';
 
-  Streamer.on('publish', (message) => {
-    sendAnnotation(message.credentials, message.payload);
+  Streamer.on('publish', ({ credentials, payload }) => {
+    payload.forEach(annotation => sendAnnotation(credentials, annotation));
   });
 
   Streamer.allowRead(function(eventName, ...args) {
@@ -28,6 +28,7 @@ if (Meteor.isServer) {
   });
 
   Streamer.allowEmit(function(eventName, { meetingId }) {
+    console.error(eventName, this.userId.includes(meetingId));
     return this.userId.includes(meetingId);
   });
 

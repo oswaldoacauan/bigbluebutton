@@ -65,7 +65,6 @@ export default class AnnotationFactory extends Component {
 
   render() {
     const { annotationsInfo } = this.props;
-    console.log(annotationsInfo);
     return (
       <g>
         {annotationsInfo ?
