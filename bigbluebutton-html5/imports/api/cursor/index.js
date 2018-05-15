@@ -16,7 +16,7 @@ if (Meteor.isServer) {
   });
 
   Streamer.allowEmit(function(eventName, { meetingId }) {
-    return this.userId.includes(meetingId);
+    return this.userId && this.userId.includes(meetingId);
   });
 
   Streamer.allowWrite(function(eventName, { credentials }) {

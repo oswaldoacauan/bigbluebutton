@@ -70,7 +70,6 @@ function handleAddedAnnotation({ meetingId, whiteboardId, userId, annotation }) 
 }
 
 AnnotationsStreamer.on('added', ({ annotations }) => {
-  console.log('added', annotations);
   annotations.forEach(annotation => handleAddedAnnotation(annotation));
 });
 // AnnotationsStreamer.on('added', message =>
