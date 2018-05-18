@@ -34,7 +34,6 @@ if (Meteor.isServer) {
     });
 
     if (!user) return false;
-
     return true;
   });
 }

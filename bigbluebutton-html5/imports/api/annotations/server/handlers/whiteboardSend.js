@@ -2,7 +2,7 @@ import { check } from 'meteor/check';
 import { AnnotationsStreamer } from '/imports/api/annotations';
 import addAnnotation from '../modifiers/addAnnotation';
 
-let annotationsQueue = [];
+let annotationsQueue = {};
 let annotationsRecieverIsRunning = false;
 
 const proccess = () => {
@@ -14,7 +14,7 @@ const proccess = () => {
   Object.keys(annotationsQueue).forEach(meetingId => {
     AnnotationsStreamer.emit('added', { meetingId, annotations: annotationsQueue[meetingId] });
   });
-  annotationsQueue = [];
+  annotationsQueue = {};
 
   Meteor.setTimeout(proccess, 60);
 };

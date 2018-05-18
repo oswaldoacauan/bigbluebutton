@@ -1,6 +1,7 @@
 import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
 import { CursorStreamer } from '/imports/api/cursor';
+import { throttle } from 'lodash';
 
 const Cursor = new Mongo.Collection(null);
 
@@ -22,14 +23,17 @@ function updateCursor(meetingId, userId, x = -1, y = -1) {
 	return Cursor.upsert(selector, modifier);
 }
 
-CursorStreamer.on('message', (message) => {
-  const { meetingId, userId, x, y } = message;
-  if (Auth.meetingID === meetingId && Auth.userID === userId) return;
-  updateCursor(meetingId, userId, x, y);
+CursorStreamer.on('message', ({ meetingId, cursors }) => {
+  Object.keys(cursors).forEach(userId => {
+    if (Auth.meetingID === meetingId && Auth.userID === userId) return;
+    updateCursor(meetingId, userId, cursors[userId].x, cursors[userId].y);
+  });
 });
 
+const throttledEmit = throttle(CursorStreamer.emit.bind(CursorStreamer), 30, { 'trailing': false });
+
 export function publishCursorUpdate(x, y) {
-  CursorStreamer.emit('publish', {
+  throttledEmit('publish', {
 		credentials: Auth.credentials,
 		payload: {
       xPercent: x,
