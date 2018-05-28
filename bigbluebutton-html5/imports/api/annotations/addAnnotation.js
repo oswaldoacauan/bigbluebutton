@@ -25,6 +25,8 @@ function handleCommonAnnotation(meetingId, whiteboardId, userId, annotation) {
       annotationType,
       annotationInfo,
       wbId,
+    },
+    $setOnInsert: {
       position,
     },
     $inc: { version: 1 },
@@ -34,7 +36,9 @@ function handleCommonAnnotation(meetingId, whiteboardId, userId, annotation) {
 }
 
 function handleTextUpdate(meetingId, whiteboardId, userId, annotation) {
-  const { id, status, annotationType, annotationInfo, wbId, position } = annotation;
+  const {
+    id, status, annotationType, annotationInfo, wbId, position,
+  } = annotation;
 
   const selector = {
     meetingId,
@@ -53,6 +57,8 @@ function handleTextUpdate(meetingId, whiteboardId, userId, annotation) {
       annotationType,
       annotationInfo,
       wbId,
+    },
+    $setOnInsert: {
       position,
     },
     $inc: { version: 1 },
@@ -104,7 +110,6 @@ function handlePencilUpdate(meetingId, whiteboardId, userId, annotation) {
           'annotationInfo.points': { $each: annotationInfo.points },
         },
         $set: {
-          position,
           status,
         },
         $inc: { version: 1 },
@@ -145,5 +150,5 @@ export default function addAnnotation(meetingId, whiteboardId, userId, annotatio
       return handleCommonAnnotation(meetingId, whiteboardId, userId, annotation);
   }
 
-  throw `VISH`;
+  throw 'VISH';
 }
