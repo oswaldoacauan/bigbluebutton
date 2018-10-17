@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from "styled-components";
+
 import Auth from '/imports/ui/services/auth';
 import AppContainer from '/imports/ui/components/app/container';
 import ErrorScreen from '/imports/ui/components/error-screen/component';
@@ -107,7 +109,9 @@ class Base extends Component {
 
     return (
       <IntlStartup locale={locale} baseControls={stateControls}>
-        {this.renderByState()}
+        <ThemeProvider theme={}>
+          {this.renderByState()}
+        </ThemeProvider>
       </IntlStartup>
     );
   }

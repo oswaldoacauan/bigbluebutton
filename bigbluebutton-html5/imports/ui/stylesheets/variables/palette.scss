@@ -24,3 +24,29 @@ $color-gray-label: $color-gray !default;
 $color-blue-light: lighten($color-primary, 35%);
 $color-blue-lighter: #92BCEA;
 $color-blue-lightest: #E4ECF2;
+
+
+/*
+  TODO: This should be moved to another file/GlobalStyle after we remove SASS completely
+*/
+:global(:root) {
+  --color-white: #{$color-white};
+  --color-off-white: #{$color-off-white};
+  --color-gray: #{$color-gray};
+  --color-gray-dark: #{$color-gray-dark};
+  --color-gray-light: #{$color-gray-light};
+  --color-gray-lighter: #{$color-gray-lighter};
+  --color-primary: #{$color-primary};
+  --color-success: #{$color-success};
+  --color-danger: #{$color-danger};
+  --color-warning: #{$color-warning};
+  --color-background: #{$color-background};
+  --color-text: #{$color-text};
+  --color-heading: #{$color-heading};
+  --color-link: #{$color-link};
+  --color-link-hover: #{$color-link-hover};
+  --color-gray-label: #{$color-gray-label};
+  --color-blue-light: #{$color-blue-light};
+  --color-blue-lighter: #{$color-blue-lighter};
+  --color-blue-lightest: #{$color-blue-lightest};
+}

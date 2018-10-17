@@ -28,3 +28,23 @@ $headings-color:          inherit !default;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+/*
+  TODO: This should be moved to another file/GlobalStyle after we remove SASS completely
+*/
+:global(:root) {
+  --font-family-sans-serif: #{$font-family-sans-serif};
+  --font-family-serif: #{$font-family-serif};
+  --font-family-monospace: #{$font-family-monospace};
+  --font-family-base: #{$font-family-base};
+  --font-size-base: #{$font-size-base};
+  --font-size-large: #{$font-size-large};
+  --font-size-small: #{$font-size-small};
+  --line-height-base: #{$line-height-base};
+  --line-height-computed: #{$line-height-computed};
+  --headings-font-family: #{$headings-font-family};
+  --headings-font-weight: #{$headings-font-weight};
+  --headings-line-height: #{$headings-line-height};
+  --headings-color: #{$headings-color};
+}

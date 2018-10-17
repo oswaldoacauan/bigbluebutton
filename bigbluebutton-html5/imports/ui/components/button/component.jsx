@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import cx from 'classnames';
 import Tooltip from '/imports/ui/components/tooltip/component';
 import { styles } from './styles';
@@ -85,6 +86,20 @@ const defaultProps = {
   iconRight: false,
   hideLabel: false,
 };
+
+const Label = styled.span`
+  color: ${props => props.theme.main};
+`;
+
+const LabelHide = styled.span`
+  font-size: 0;
+  height: 0;
+  width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  display: block;
+`;
 
 export default class Button extends BaseButton {
   _getClassNames() {
@@ -215,17 +230,13 @@ export default class Button extends BaseButton {
 
   renderLabel() {
     const { label, hideLabel } = this.props;
-
-    const classNames = {};
-
-    classNames[styles.label] = true;
-    classNames[styles.hideLabel] = hideLabel;
+    const LabelComponent = hideLabel ? LabelHide : Label;
 
     return (
-      <span className={cx(classNames)}>
+      <LabelComponent>
         {label}
         {this.props.children}
-      </span>
+      </LabelComponent>
     );
   }
 }
