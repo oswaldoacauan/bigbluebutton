@@ -7,8 +7,8 @@
 }
 
 .audioNote {
-  @include mq($small-only) {
-    font-size: 0.8rem;
+  @include mq(var(--small-only)) {
+	font-size: 0.8rem;
   }
 }
 
@@ -26,35 +26,35 @@
   margin-right: 1rem;
 
   &:last-child {
-    margin-right: 0;
-    padding-right: 0.1rem;
-    padding-left: 4rem;
+	margin-right: 0;
+	padding-right: 0.1rem;
+	padding-left: 4rem;
   }
 
   &.spacedLeft {
-    // @extend .spaced;
+	// @extend .spaced;
 
-    label {
-      flex-grow: 1;
-      flex-basis: 0;
-      margin-right: 0;
-      padding-right: 0.1rem;
-      padding-left: 4rem;
-    }
+	label {
+	  flex-grow: 1;
+	  flex-basis: 0;
+	  margin-right: 0;
+	  padding-right: 0.1rem;
+	  padding-left: 4rem;
+	}
 
-    &:before {
-      content: "";
-      display: block;
-      flex-grow: 1;
-      flex-basis: 0;
-      margin-right: 1rem;
-    }
+	&:before {
+	  content: "";
+	  display: block;
+	  flex-grow: 1;
+	  flex-basis: 0;
+	  margin-right: 1rem;
+	}
 
-    &:last-child {
-      margin-right: 0;
-      padding-right: 0;
-      padding-left: 0;
-    }
+	&:last-child {
+	  margin-right: 0;
+	  padding-right: 0;
+	  padding-left: 0;
+	}
   }
 }
 
@@ -64,7 +64,7 @@
   font-weight: 600;
 
   & > :first-child {
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
   }
 }
 
@@ -78,11 +78,11 @@
 .select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
-  background: $color-white url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='#667189' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat right .35rem center/.4rem .5rem;
+  background: var(--color-white) url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='#667189' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat right .35rem center/.4rem .5rem;
   background-repeat: no-repeat;
-  border: 0.07rem solid $color-gray-light;
+  border: 0.07rem solid var(--color-gray-light);
   border-radius: .125rem;
-  color: $color-text;
+  color: var(--color-text);
   width: 100%;
   // appearance: none;
   padding: .4rem;
@@ -108,8 +108,8 @@
   margin-right: 0.5rem;
   border: none;
 
-  @include mq($small-only) {
-    margin-right: auto;
+  @include mq(var(--small-only)) {
+	margin-right: auto;
   }
 }
 

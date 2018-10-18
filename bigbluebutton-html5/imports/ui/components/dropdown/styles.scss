@@ -1,74 +1,74 @@
 @import "/imports/ui/stylesheets/variables/_all";
 @import "/imports/ui/stylesheets/mixins/_scrollable";
 
-$dropdown-bg: $color-white;
-$dropdown-color: $color-text;
-$caret-shadow-color: $color-gray;
+var(--dropdown-bg:) var(--color-white);
+var(--dropdown-color:) var(--color-text);
+var(--caret-shadow-color:) var(--color-gray);
 
-$dropdown-caret-width: 12px;
-$dropdown-caret-height: 8px;
+var(--dropdown-caret-width:) 12px;
+var(--dropdown-caret-height:) 8px;
 
 .dropdown {
   position: relative;
 
   &:focus {
-    outline: none;
+	outline: none;
   }
 }
 
 .content {
   position: absolute;
-  background: $dropdown-bg;
-  border-radius: $border-radius;
+  background: var(--dropdown-bg);
+  border-radius: var(--border-radius);
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   border: 1px solid rgba(0, 0, 0, .15);
-  padding: $line-height-computed / 2;
+  padding: var(--line-height-computed) / 2;
   z-index: 1000;
 
   &:after, &:before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
   }
 
   &[aria-expanded="false"] {
-    display: none;
+	display: none;
   }
 
   &[aria-expanded="true"] {
-    display: block;
+	display: block;
   }
 
-  @include mq($small-only) {
-    z-index: 1015;
-    border-radius: 0;
-    background-color: #fff;
-    box-shadow: none;
-    position: fixed;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
-    margin: 0 0 $line-height-computed * 5.25 0 !important;
-    transform: translateX(0) translateY(0) !important;
+  @include mq(var(--small-only)) {
+	z-index: 1015;
+	border-radius: 0;
+	background-color: #fff;
+	box-shadow: none;
+	position: fixed;
+	top: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 0 var(--line-height-computed) * 5.25 0 !important;
+	transform: translateX(0) translateY(0) !important;
 
-    &:after, &:before {
-      display: none !important;
-    }
+	&:after, &:before {
+	  display: none !important;
+	}
   }
 }
 
 .scrollable {
-  @include mq($small-only) {
-    @include scrollbox-vertical();
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  @include mq(var(--small-only)) {
+	@include scrollbox-vertical();
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
   }
 }
 
@@ -80,14 +80,14 @@ $dropdown-caret-height: 8px;
   bottom: 0.8rem;
   border-radius: 0;
   z-index: 1011;
-  font-size: $font-size-large * 1.1;
-  width: calc(100% - #{($line-height-computed * 2)});
-  left: $line-height-computed;
-  box-shadow: 0 0 0 2rem $color-white !important;
-  border: $color-white !important;
+  font-size: var(--font-size-large) * 1.1;
+  width: calc(100% - #{(var(--line-height-computed) * 2)});
+  left: var(--line-height-computed);
+  box-shadow: 0 0 0 2rem var(--color-white) !important;
+  border: var(--color-white) !important;
 
-  @include mq($small-only) {
-    display: block;
+  @include mq(var(--small-only)) {
+	display: block;
   }
 }
 
@@ -99,18 +99,18 @@ $dropdown-caret-height: 8px;
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: $dropdown-caret-height * 1.25;
+  margin-bottom: var(--dropdown-caret-height) * 1.25;
 
   &:before, &:after {
-    border-left: $dropdown-caret-width solid transparent;
-    border-right: $dropdown-caret-width solid transparent;
-    border-top: $dropdown-caret-height solid $dropdown-bg;
-    bottom: 0;
-    margin-bottom: -($dropdown-caret-height);
+	border-left: var(--dropdown-caret-width) solid transparent;
+	border-right: var(--dropdown-caret-width) solid transparent;
+	border-top: var(--dropdown-caret-height) solid var(--dropdown-bg);
+	bottom: 0;
+	margin-bottom: -(var(--dropdown-caret-height));
   }
 
   &:before {
-    border-top: $dropdown-caret-height solid $caret-shadow-color;
+	border-top: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
@@ -118,63 +118,63 @@ $dropdown-caret-height: 8px;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: $dropdown-caret-height * 1.25;
+  margin-top: var(--dropdown-caret-height) * 1.25;
 
   &:before, &:after {
-    border-left: $dropdown-caret-width solid transparent;
-    border-right: $dropdown-caret-width solid transparent;
-    border-bottom: $dropdown-caret-height solid $dropdown-bg;
-    margin-top: -($dropdown-caret-height);
-    top: 0;
+	border-left: var(--dropdown-caret-width) solid transparent;
+	border-right: var(--dropdown-caret-width) solid transparent;
+	border-bottom: var(--dropdown-caret-height) solid var(--dropdown-bg);
+	margin-top: -(var(--dropdown-caret-height));
+	top: 0;
   }
 
   &:before {
-    border-bottom: $dropdown-caret-height solid $caret-shadow-color;
+	border-bottom: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
 %right-caret {
   top: 50%;
   transform: translateX(-100%) translateY(-50%);
-  left: -($dropdown-caret-height * 1.25);
+  left: -(var(--dropdown-caret-height) * 1.25);
 
   &:before, &:after{
-    border-top: $dropdown-caret-width solid transparent;
-    border-bottom: $dropdown-caret-width solid transparent;
-    border-left: $dropdown-caret-height solid $dropdown-bg;
-    margin-right: -($dropdown-caret-height);
-    top: 50%;
-    right: 0;
+	border-top: var(--dropdown-caret-width) solid transparent;
+	border-bottom: var(--dropdown-caret-width) solid transparent;
+	border-left: var(--dropdown-caret-height) solid var(--dropdown-bg);
+	margin-right: -(var(--dropdown-caret-height));
+	top: 50%;
+	right: 0;
   }
 
   &:before {
-    border-left: $dropdown-caret-height solid $caret-shadow-color;
+	border-left: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
 %left-caret {
   top: 50%;
   transform: translateX(100%) translateY(-50%);
-  right: -($dropdown-caret-height * 1.25);
+  right: -(var(--dropdown-caret-height) * 1.25);
 
   &:before, &:after {
-    border-top: $dropdown-caret-width solid transparent;
-    border-bottom: $dropdown-caret-width solid transparent;
-    border-right: $dropdown-caret-height solid $dropdown-bg;
-    margin-left: -($dropdown-caret-height);
-    top: 50%;
-    left: 0;
+	border-top: var(--dropdown-caret-width) solid transparent;
+	border-bottom: var(--dropdown-caret-width) solid transparent;
+	border-right: var(--dropdown-caret-height) solid var(--dropdown-bg);
+	margin-left: -(var(--dropdown-caret-height));
+	top: 50%;
+	left: 0;
   }
 
   &:before {
-    border-right: $dropdown-caret-height solid $caret-shadow-color;
+	border-right: var(--dropdown-caret-height) solid var(--caret-shadow-color);
   }
 }
 
 %horz-center-caret {
   &:after, &:before {
-    left: 50%;
-    margin-left: -($dropdown-caret-width);
+	left: 50%;
+	margin-left: -(var(--dropdown-caret-width));
   }
 }
 
@@ -183,7 +183,7 @@ $dropdown-caret-height: 8px;
   left: 100%;
 
   &:after, &:before {
-    right: $dropdown-caret-width / 2;
+	right: var(--dropdown-caret-width) / 2;
   }
 }
 
@@ -193,13 +193,13 @@ $dropdown-caret-height: 8px;
   left: auto;
 
   &:after, &:before {
-    left: $dropdown-caret-width / 2;
+	left: var(--dropdown-caret-width) / 2;
   }
 }
 
 %vert-center-caret {
   &:after, &:before {
-    margin-top: -($dropdown-caret-width);
+	margin-top: -(var(--dropdown-caret-width));
   }
 }
 
@@ -207,8 +207,8 @@ $dropdown-caret-height: 8px;
   top: 0;
 
   &:after, &:before {
-    top: 0;
-    margin-top: $dropdown-caret-width / 2;
+	top: 0;
+	margin-top: var(--dropdown-caret-width) / 2;
   }
 }
 
@@ -217,8 +217,8 @@ $dropdown-caret-height: 8px;
   bottom: 0;
 
   &:after, &:before {
-    top: auto;
-    bottom: $dropdown-caret-width / 2;
+	top: auto;
+	bottom: var(--dropdown-caret-width) / 2;
   }
 }
 
@@ -232,8 +232,8 @@ $dropdown-caret-height: 8px;
   @extend %horz-right-caret;
   min-width: 11.5rem;
 
-  @include mq($small-only) {
-    width: auto;
+  @include mq(var(--small-only)) {
+	width: auto;
   }
 }
 
@@ -257,8 +257,8 @@ $dropdown-caret-height: 8px;
   @extend %horz-left-caret;
   min-width: 9rem;
 
-  @include mq($small-only) {
-    width: auto;
+  @include mq(var(--small-only)) {
+	width: auto;
   }
 }
 

@@ -1,9 +1,9 @@
 @import "/imports/ui/stylesheets/variables/_all";
 
-$navbar-height: 63px; // TODO: Change to NavBar real height
-$actionsbar-height: 75px; // TODO: Change to ActionsBar real height
-$bars-padding: $lg-padding-x - .45rem; // -.45 so user-list and chat title is aligned with the presentation title
-$userlist-handle-width: 5px; // 5px so user-list and chat resize handle render as the same size
+var(--navbar-height:) 63px; // TODO: Change to NavBar real height
+var(--actionsbar-height:) 75px; // TODO: Change to ActionsBar real height
+var(--bars-padding:) var(--lg-padding-x) - .45rem; // -.45 so user-list and chat title is aligned with the presentation title
+var(--userlist-handle-width:) 5px; // 5px so user-list and chat resize handle render as the same size
 
 .main {
   position: fixed;
@@ -18,7 +18,7 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   text-align: center;
 
   font-size: 1.5rem;
-  padding: $bars-padding;
+  padding: var(--bars-padding);
 }
 
 .wrapper {
@@ -28,8 +28,8 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   flex-direction: column;
   overflow: hidden;
 
-  @include mq($medium-up) {
-    flex-direction: row;
+  @include mq(var(--medium-up)) {
+	flex-direction: row;
   }
 }
 
@@ -40,15 +40,15 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   overflow-y: auto;
   overflow-x: hidden;
 
-  @include mq($small-only) {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  @include mq(var(--small-only)) {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
   }
 
-  @include mq($medium-up) {
-    position: relative;
+  @include mq(var(--medium-up)) {
+	position: relative;
   }
 }
 
@@ -58,37 +58,37 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
 
   &:before,
   &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 50%;
-    opacity: 0;
-    transition: opacity .3s;
-    pointer-events: none;
+	content: '';
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 50%;
+	opacity: 0;
+	transition: opacity .3s;
+	pointer-events: none;
   }
 
   &:before {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, .45) -20%, transparent 20%);
+	top: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, .45) -20%, transparent 20%);
   }
 
   &:after {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, .45) -20%, transparent 20%);
+	bottom: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, .45) -20%, transparent 20%);
   }
 
   &:hover,
   &:active {
-    &:before,
-    &:after {
-      opacity: 1;
-    }
+	&:before,
+	&:after {
+	  opacity: 1;
+	}
   }
 
-  @include mq($medium-up) {
-    flex: 5;
-    order: 2;
+  @include mq(var(--medium-up)) {
+	flex: 5;
+	order: 2;
   }
 }
 
@@ -102,23 +102,23 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
 
   order: 1;
 
-  @include mq($small-only) {
-    top: $navbar-height;
+  @include mq(var(--small-only)) {
+	top: var(--navbar-height);
   }
 
-  @include mq($medium-up) {
-    flex: 0 15vw;
-    order: 1;
+  @include mq(var(--medium-up)) {
+	flex: 0 15vw;
+	order: 1;
   }
 
-  @include mq($xlarge-up) {
-    flex-basis: 10vw;
+  @include mq(var(--xlarge-up)) {
+	flex-basis: 10vw;
   }
 }
 
 .userlistPad {
-  background-color: $color-off-white;
-  width: $userlist-handle-width;
+  background-color: var(--color-off-white);
+  width: var(--userlist-handle-width);
 }
 
 .compact {
@@ -130,20 +130,20 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
 
   order: 2;
   height: 100%;
-  @include mq($small-only) {
-    z-index: 3;
-    height: auto;
-    top: $navbar-height;
-    overflow: visible;
+  @include mq(var(--small-only)) {
+	z-index: 3;
+	height: auto;
+	top: var(--navbar-height);
+	overflow: visible;
   }
 
-  @include mq($medium-up) {
-    flex: 0 25vw;
-    order: 1;
+  @include mq(var(--medium-up)) {
+	flex: 0 25vw;
+	order: 1;
   }
 
-  @include mq($xlarge-up) {
-    flex-basis: 20vw;
+  @include mq(var(--xlarge-up)) {
+	flex-basis: 20vw;
   }
 }
 
@@ -151,9 +151,9 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   @extend %full-page;
   z-index: 4;
 
-  @include mq($medium-up) {
-    flex: 0 15vw;
-    order: 2;
+  @include mq(var(--medium-up)) {
+	flex: 0 15vw;
+	order: 2;
   }
 }
 
@@ -164,8 +164,8 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   flex-direction: row;
   position: relative;
 
-  @include mq($portrait) {
-    flex-direction: column;
+  @include mq(var(--portrait)) {
+	flex-direction: column;
   }
 }
 
@@ -174,8 +174,8 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
   flex-basis: 15vw;
   order: 2;
 
-  @include mq($portrait) {
-    min-height: 35%;
+  @include mq(var(--portrait)) {
+	min-height: 35%;
   }
 }
 
@@ -187,7 +187,7 @@ $userlist-handle-width: 5px; // 5px so user-list and chat resize handle render a
 
 .actionsbar {
   flex: 1;
-  padding: $bars-padding;
+  padding: var(--bars-padding);
   position: relative;
   order: 3;
 }

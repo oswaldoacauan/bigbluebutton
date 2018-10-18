@@ -1,10 +1,10 @@
 @import "../../../stylesheets/variables/_all";
 @import "../../../stylesheets/mixins/_scrollable";
 
-$item-height: 1rem;
+var(--item-height:) 1rem;
 
 @keyframes bar-stripes {
-  from { background-position: $item-height 0; }
+  from { background-position: var(--item-height) 0; }
   to { background-position: 0 0; }
 }
 
@@ -23,35 +23,35 @@ $item-height: 1rem;
   }
 
   > tbody {
-    text-align: left;
+	text-align: left;
 
-    > tr {
-      border-bottom: 1px solid transparentize($color-gray-light, .85);
+	> tr {
+	  border-bottom: 1px solid transparentize(var(--color-gray-light), .85);
 
-      &:last-child {
-        border-bottom: 0;
-      }
+	  &:last-child {
+	    border-bottom: 0;
+	  }
 
-      &:hover,
-      &:focus {
-        background-color: transparentize($color-gray-light, .85);
-      }
+	  &:hover,
+	  &:focus {
+	    background-color: transparentize(var(--color-gray-light), .85);
+	  }
 
-      th,
-      td {
-        padding: ($sm-padding-y * 2) ($sm-padding-x / 2);
-        white-space: nowrap;
-      }
+	  th,
+	  td {
+	    padding: (var(--sm-padding-y) * 2) (var(--sm-padding-x) / 2);
+	    white-space: nowrap;
+	  }
 
-      th {
-        font-weight: bold;
-        color: $color-gray-dark;
-      }
+	  th {
+	    font-weight: bold;
+	    color: var(--color-gray-dark);
+	  }
 
-      td {
+	  td {
 
-      }
-    }
+	  }
+	}
   }
 }
 
@@ -72,20 +72,20 @@ $item-height: 1rem;
 }
 
 .tableItemName {
-  height: $item-height;
+  height: var(--item-height);
   width: auto;
   position: relative;
 
   &:before {
-    content: "\00a0";
-    visibility: hidden;
+	content: "\00a0";
+	visibility: hidden;
   }
 
   > span {
-    @extend %text-elipsis;
-    position: absolute;
-    left: 0;
-    right: 0;
+	@extend %text-elipsis;
+	position: absolute;
+	left: 0;
+	right: 0;
   }
 }
 
@@ -98,32 +98,32 @@ $item-height: 1rem;
 }
 
 .tableItemNew {
-  background-color: transparentize($color-primary, .95);
+  background-color: transparentize(var(--color-primary), .95);
 }
 
 .tableItemUploading {
-  background-color: transparentize($color-primary, .75);
+  background-color: transparentize(var(--color-primary), .75);
 }
 
 .tableItemConverting {
-  background-color: transparentize($color-success, .75);
+  background-color: transparentize(var(--color-success), .75);
 }
 
 .tableItemError {
-  background-color: transparentize($color-danger, .75);
+  background-color: transparentize(var(--color-danger), .75);
 }
 
 .tableItemAnimated {
   background-image: linear-gradient(45deg,
-    rgba(255, 255, 255, .15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, .15) 50%,
-    rgba(255, 255, 255, .15) 75%,
-    transparent 75%,
-    transparent
+	rgba(255, 255, 255, .15) 25%,
+	transparent 25%,
+	transparent 50%,
+	rgba(255, 255, 255, .15) 50%,
+	rgba(255, 255, 255, .15) 75%,
+	transparent 75%,
+	transparent
   );
-  background-size: $item-height $item-height;
+  background-size: var(--item-height) var(--item-height);
   animation: bar-stripes 1s linear infinite;
 }
 
@@ -133,22 +133,22 @@ $item-height: 1rem;
   background: transparent;
   cursor: pointer;
   font-size: 1.35rem;
-  color: $color-gray-light;
+  color: var(--color-gray-light);
   padding: 0;
   transition: all .25s;
 }
 
 .itemActionRemove {
   &:focus, &:hover {
-    color: $color-danger;
+	color: var(--color-danger);
   }
 
   &[aria-disabled="true"] {
-    cursor: not-allowed;
-    opacity: .5;
-    box-shadow: none;
-    pointer-events: none;
-    cursor: not-allowed;
+	cursor: not-allowed;
+	opacity: .5;
+	box-shadow: none;
+	pointer-events: none;
+	cursor: not-allowed;
   }
 }
 
@@ -156,34 +156,34 @@ $item-height: 1rem;
   width: 100%;
   display: block;
   border: 2px dashed;
-  border-radius: $border-radius;
-  padding: ($lg-padding-y * 2.5) ($lg-padding-x * 2.5);
-  margin-top: $lg-padding-y * 5;
+  border-radius: var(--border-radius);
+  padding: (var(--lg-padding-y) * 2.5) (var(--lg-padding-x) * 2.5);
+  margin-top: var(--lg-padding-y) * 5;
   text-align: center;
-  font-size: $font-size-large;
+  font-size: var(--font-size-large);
   cursor: pointer;
 }
 
 .dropzoneActive {
-  background-color: transparentize($color-gray-light, .85);
+  background-color: transparentize(var(--color-gray-light), .85);
 }
 
 .dropzoneReject {
-  color: $color-danger;
-  background-color: transparentize($color-danger, .80);
+  color: var(--color-danger);
+  background-color: transparentize(var(--color-danger), .80);
   cursor: no-drop;
 }
 
 .dropzoneIcon {
-  font-size: $font-size-large * 3;
+  font-size: var(--font-size-large) * 3;
 }
 
 .dropzoneMessage {
-  margin: $md-padding-y 0;
+  margin: var(--md-padding-y) 0;
 }
 
 .dropzoneLink {
-  color: $color-link;
+  color: var(--color-link);
   text-decoration: underline;
   font-size: 80%;
   display: block;
@@ -195,8 +195,8 @@ $item-height: 1rem;
   font-size: 75%;
   font-weight: 700;
   line-height: 1;
-  color: $color-white;
-  background: $color-primary;
+  color: var(--color-white);
+  background: var(--color-primary);
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;

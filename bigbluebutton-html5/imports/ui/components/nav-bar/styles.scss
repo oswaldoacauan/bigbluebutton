@@ -26,8 +26,8 @@
 
 .presentationTitle {
   font-weight: 200;
-  color: $color-white;
-  font-size: $font-size-base;
+  color: var(--color-white);
+  font-size: var(--font-size-base);
   margin: 0;
   padding: 0;
   white-space: nowrap;
@@ -36,13 +36,13 @@
   max-width: 30vw;
   
   > [class^="icon-bbb-"] {
-    font-size: 75%;
+	font-size: 75%;
   }
 }
 
 .presentationTitleSeparator {
-  color: $color-gray;
-  font-size: $font-size-base;
+  color: var(--color-gray);
+  font-size: var(--font-size-base);
   margin: 0 1rem;
 }
 
@@ -50,15 +50,15 @@
   position: relative;
 
   &:after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    bottom: $border-size;
-    right: 3px;
-    background-color: $color-danger;
-    border: $border-size solid $color-gray-dark;
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+	bottom: var(--border-size);
+	right: 3px;
+	background-color: var(--color-danger);
+	border: var(--border-size) solid var(--color-gray-dark);
   }
 }
 
@@ -66,17 +66,17 @@
   margin: 0;
 
   span {
-    border: none;
-    box-shadow: none;
+	border: none;
+	box-shadow: none;
   }
 
   &:hover,
   &:focus {
-    span {
-      background-color: transparent !important;
-      color: $color-white !important;
-      opacity: .75;
-    }
+	span {
+	  background-color: transparent !important;
+	  color: var(--color-white) !important;
+	  opacity: .75;
+	}
   }
 }
 

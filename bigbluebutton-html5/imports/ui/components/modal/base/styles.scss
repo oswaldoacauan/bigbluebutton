@@ -6,17 +6,17 @@
 
   max-width: 60vw;
   max-height: 100%;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   background: #fff;
   overflow: auto;
   outline: none;
 
-  @include mq($small-only) {
-    max-width: 95vw;
+  @include mq(var(--small-only)) {
+	max-width: 95vw;
   }
 
-  @include mq($medium-up) {
-    max-width: 80vw;
+  @include mq(var(--medium-up)) {
+	max-width: 80vw;
   }
 }
 

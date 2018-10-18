@@ -1,9 +1,9 @@
 @import "/imports/ui/components/button/styles.scss";
 @import "/imports/ui/stylesheets/variables/_all";
 
-$controls-color: $color-gray !default;
-$controls-background: $color-white !default;
-$toolbar-button-border-radius: 5px;
+var(--controls-color:) var(--color-gray) !default;
+var(--controls-background:) var(--color-white) !default;
+var(--toolbar-button-border-radius:) 5px;
 
 .presentationToolbarWrapper,
 .presentationControls,
@@ -14,7 +14,7 @@ $toolbar-button-border-radius: 5px;
   align-items: center;
   margin-left: .5rem;
   margin-right: .5rem;
-  border-radius: $toolbar-button-border-radius;
+  border-radius: var(--toolbar-button-border-radius);
 }
 
 .presentationControls,
@@ -29,41 +29,41 @@ $toolbar-button-border-radius: 5px;
   justify-content: center;
   z-index: 1;
 
-  @include mq("#{$landscape} and (max-height:#{upper-bound($small-range)}), #{$small-only}") {
-    transform: scale(.75);
-    transform-origin: bottom;
+  @include mq("#{var(--landscape}) and (max-height:#{upper-bound($small-range)}), #{var(--small-only}")) {
+	transform: scale(.75);
+	transform-origin: bottom;
   }
 
 
   button,
   select,
   > div {
-    background-color: $controls-background;
-    color: $controls-color;
-    border-top: 0;
-    border-bottom: 0;
-    border-left: 0;
-    border-radius: 0;
-    height: 2.25rem;
-    box-shadow: none !important;
-    border: 0;
+	background-color: var(--controls-background);
+	color: var(--controls-color);
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-radius: 0;
+	height: 2.25rem;
+	box-shadow: none !important;
+	border: 0;
   }
 
   i {
-    font-weight: bolder;
-    color: $color-gray;
+	font-weight: bolder;
+	color: var(--color-gray);
   }
 
 
 
   button:first-of-type {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
   }
 
   button:last-of-type {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
   }
 }
 
@@ -73,7 +73,7 @@ $toolbar-button-border-radius: 5px;
   // flex-direction: column;
   width: 11.5%;
   min-width: 175px;
-  background-color: $color-white;
+  background-color: var(--color-white);
 }
 
 .zoomWrapperNoBorder {
@@ -86,15 +86,15 @@ $toolbar-button-border-radius: 5px;
   width: 2.8rem;
 
   &[aria-disabled="true"] {
-    opacity: 1;
-    background-color: $color-gray-lighter;
+	opacity: 1;
+	background-color: var(--color-gray-lighter);
   }
 }
 
 .skipSlideSelect {
   padding: 0 0.8%;
-  border-left: $border-size solid $color-gray-lighter !important;
-  border-right: $border-size solid $color-gray-lighter !important;
+  border-left: var(--border-size) solid var(--color-gray-lighter) !important;
+  border-right: var(--border-size) solid var(--color-gray-lighter) !important;
 }
 
 .zoomSlider {
@@ -109,8 +109,8 @@ $toolbar-button-border-radius: 5px;
   height: 2.25rem;
   text-align: center;
   color: black;
-  border-left: $border-size solid $color-gray-lighter !important;
-  border-right: $border-size solid $color-gray-lighter !important;
+  border-left: var(--border-size) solid var(--color-gray-lighter) !important;
+  border-right: var(--border-size) solid var(--color-gray-lighter) !important;
   display: flex;
   align-items: center;
   justify-content: center;

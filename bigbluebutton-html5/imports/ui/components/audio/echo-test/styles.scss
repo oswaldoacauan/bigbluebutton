@@ -7,20 +7,20 @@
 
 .button {
   &:focus {
-    outline: none !important;
+	outline: none !important;
   }
 
   &:first-child {
-    margin-right: 3rem;
+	margin-right: 3rem;
 
-    @include mq($small-only) {
-      margin-right: 1rem;
-    }
+	@include mq(var(--small-only)) {
+	  margin-right: 1rem;
+	}
   }
 
   span:last-child {
-    color: black;
-    font-size: 1rem;
-    font-weight: 600;
+	color: black;
+	font-size: 1rem;
+	font-weight: 600;
   }
 }

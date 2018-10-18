@@ -13,34 +13,34 @@
   justify-content: center;
 
   > * {
-    margin: 0 $sm-padding-x;
+	margin: 0 var(--sm-padding-x);
 
-    @include mq($small-only) {
-      margin: 0 $sm-padding-y;
-    }
+	@include mq(var(--small-only)) {
+	  margin: 0 var(--sm-padding-y);
+	}
   }
 }
 
 .left {
   position: absolute;
-  @include mq($small-only) {
-    bottom: $sm-padding-x;
-    left: $sm-padding-x;
+  @include mq(var(--small-only)) {
+	bottom: var(--sm-padding-x);
+	left: var(--sm-padding-x);
   }
 }
 
 .centerWithActions {
-  @include mq($xsmall-only) {
-    justify-content: flex-end;
+  @include mq(var(--xsmall-only)) {
+	justify-content: flex-end;
   }
 }
 
 .button {
   &:focus {
-    outline: none !important;
+	outline: none !important;
   }
 
   span:first-child {
-    box-shadow: 0 2px 5px 0 rgb(0, 0, 0);
+	box-shadow: 0 2px 5px 0 rgb(0, 0, 0);
   }
 }

@@ -10,17 +10,17 @@
 }
 
 .scrollableList {
-  @include elementFocus($list-item-bg-hover);
-  @include scrollbox-vertical($user-list-bg);
+  @include elementFocus(var(--list-item-bg-hover));
+  @include scrollbox-vertical(var(--user-list-bg));
 
   &:active {
-    box-shadow: none;
-    border-radius: none;
+	box-shadow: none;
+	border-radius: none;
   }
 }
 
 .list {
-  margin-left: $md-padding-y;
+  margin-left: var(--md-padding-y);
   margin-bottom: 1px;
 }
 
@@ -32,7 +32,7 @@
   margin: 1rem auto;
   width: 2.2rem;
   border: 0;
-  border-top: 1px solid $color-gray-lighter;
+  border-top: 1px solid var(--color-gray-lighter);
 }
 
 .chatsList {
@@ -42,7 +42,7 @@
 }
 
 .footer{
-  @include mq($small-only) {
+  @include mq(var(--small-only)) {
 		margin: 4rem;
   }
 }

@@ -1,10 +1,10 @@
 @import "../../stylesheets/variables/_all";
 
 // pollingAnswer position offsets
-$xs-portrait-offset: 8.75em;
-$xs-landscape-offset: 4.75em;
-$s-portrait-offset: 11.75em;
-$s-landscape-offset: 1.75em;
+var(--xs-portrait-offset:) 8.75em;
+var(--xs-landscape-offset:) 4.75em;
+var(--s-portrait-offset:) 11.75em;
+var(--s-landscape-offset:) 1.75em;
 
 .pollingContainer {
   order: 2;
@@ -14,13 +14,13 @@ $s-landscape-offset: 1.75em;
   flex-direction: column;
   padding-bottom: 5px;
 
-  @include mq($medium-up) {
-    padding-bottom: 10px;
+  @include mq(var(--medium-up)) {
+	padding-bottom: 10px;
   }
 }
 
 .pollingTitle {
-  color: $color-white;
+  color: var(--color-white);
   white-space: nowrap;
   padding-bottom: 10px;
 }
@@ -36,18 +36,18 @@ $s-landscape-offset: 1.75em;
   z-index: 1;
 
   :global(.browser-safari) & {
-    @include mq($ip5-portrait) {
-      bottom: $xs-portrait-offset;
-    }
-    @include mq($ip678-portrait) {
-      bottom: $s-portrait-offset;
-    }
-    @include mq($ip5-landscape) {
-      bottom: $xs-landscape-offset;
-    }
-    @include mq($ip678-landscape) {
-      bottom: $s-landscape-offset;
-    }
+	@include mq(var(--ip5-portrait)) {
+	  bottom: var(--xs-portrait-offset);
+	}
+	@include mq(var(--ip678-portrait)) {
+	  bottom: var(--s-portrait-offset);
+	}
+	@include mq(var(--ip5-landscape)) {
+	  bottom: var(--xs-landscape-offset);
+	}
+	@include mq(var(--ip678-landscape)) {
+	  bottom: var(--s-landscape-offset);
+	}
   }
 }
 
@@ -56,12 +56,12 @@ $s-landscape-offset: 1.75em;
   margin-left: 5px;
   overflow: hidden;
 
-  @include mq($medium-up) {
-    margin-left: 10px;
+  @include mq(var(--medium-up)) {
+	margin-left: 10px;
   }
 
   &:first-of-type {
-    margin-left: 0;
+	margin-left: 0;
   }
 }
 
