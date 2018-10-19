@@ -1,9 +1,11 @@
 @import "/imports/ui/stylesheets/variables/_all";
 
-var(--navbar-height:) 63px; // TODO: Change to NavBar real height
-var(--actionsbar-height:) 75px; // TODO: Change to ActionsBar real height
-var(--bars-padding:) var(--lg-padding-x) - .45rem; // -.45 so user-list and chat title is aligned with the presentation title
-var(--userlist-handle-width:) 5px; // 5px so user-list and chat resize handle render as the same size
+:root {
+  --navbar-height: 63px; // TODO: Change to NavBar real height
+  --actionsbar-height: 75px; // TODO: Change to ActionsBar real height
+  --bars-padding: calc(var(--lg-padding-x) - .45rem); // -.45 so user-list and chat title is aligned with the presentation title
+  --userlist-handle-width: 5px; // 5px so user-list and chat resize handle render as the same size
+}
 
 .main {
   position: fixed;

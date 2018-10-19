@@ -1,8 +1,5 @@
 @import "/imports/ui/stylesheets/variables/_all";
 
-var(--more-icon-font-size:) 12px;
-var(--more-icon-line-height:) 16px;
-
 %list {
   list-style: none;
   font-size: var(--font-size-base);
@@ -15,7 +12,7 @@ var(--more-icon-line-height:) 16px;
   white-space: pre-line;
 
   @include mq(var(--small-only)) {
-	font-size: var(--font-size-large) * 1.1;
+	font-size: calc(var(--font-size-large) * 1.1);
 	padding: var(--line-height-computed);
   }
 }
@@ -48,8 +45,8 @@ var(--more-icon-line-height:) 16px;
   min-height: 1px;
   background-color: var(--color-gray-lighter);
   padding: 0;
-  margin-top: var(--line-height-computed) * .5;
-  margin-bottom: var(--line-height-computed) * .5;
+  margin-top: calc(var(--line-height-computed) * .5);
+  margin-bottom: calc(var(--line-height-computed) * .5);
 }
 
 .item {
@@ -61,10 +58,10 @@ var(--more-icon-line-height:) 16px;
   }
 
   .verticalList & {
-	padding: (var(--line-height-computed) / 3) 0;
+	padding: calc(var(--line-height-computed) / 3) 0;
 
 	@include mq(var(--small-only)) {
-	  padding: (var(--line-height-computed) / 1.5) 0;
+	  padding: calc(var(--line-height-computed) / 1.5) 0;
 	}
   }
 
@@ -72,7 +69,7 @@ var(--more-icon-line-height:) 16px;
 	padding: 0 (var(--line-height-computed) / 3);
 
 	@include mq(var(--small-only)) {
-	  padding: (var(--line-height-computed) / 1.5) 0;
+	  padding: calc(var(--line-height-computed) / 1.5) 0;
 	}
   }
 
@@ -84,25 +81,25 @@ var(--more-icon-line-height:) 16px;
 	color: var(--color-white);
 
 	.verticalList & {
-	  margin-left: -(var(--line-height-computed) / 2);
-	  margin-right: -(var(--line-height-computed) / 2);
-	  padding-left: (var(--line-height-computed) / 2);
-	  padding-right: (var(--line-height-computed) / 2);
+	  margin-left: calc((var(--line-height-computed) / 2) * -1);
+	  margin-right: calc((var(--line-height-computed) / 2) * -1);
+	  padding-left: calc(var(--line-height-computed) / 2);
+	  padding-right: calc(var(--line-height-computed) / 2);
 	}
 
 	.horizontalList & {
-	  margin-top: -(var(--line-height-computed) / 2);
-	  margin-bottom: -(var(--line-height-computed) / 2);
+	  margin-top: calc((var(--line-height-computed) / 2) * -1);
+	  margin-bottom: calc((var(--line-height-computed) / 2) * -1);
 	  padding-top: (var(--line-height-computed) / 2);
 	  padding-bottom: (var(--line-height-computed) / 2);
 
 	  @include mq(var(--small-only)) {
 	    margin: 0;
-	    padding: (var(--line-height-computed) / 1.5) 0;
-	    margin-left: -(var(--line-height-computed) / 2);
-	    margin-right: -(var(--line-height-computed) / 2);
-	    padding-left: (var(--line-height-computed) / 2);
-	    padding-right: (var(--line-height-computed) / 2);
+	    padding: calc(var(--line-height-computed) / 1.5) 0;
+	    margin-left: calc((var(--line-height-computed) / 2) * -1);
+	    margin-right: calc((var(--line-height-computed) / 2) * -1);
+	    padding-left: calc(var(--line-height-computed) / 2);
+	    padding-right: calc(var(--line-height-computed) / 2);
 	  }
 	}
 
@@ -132,8 +129,8 @@ var(--more-icon-line-height:) 16px;
 .iconRight {
   margin-right: -var(--indicator-padding-left);
   margin-left: var(--sm-padding-x);
-  font-size: var(--more-icon-font-size);
-  line-height: var(--more-icon-line-height);
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .itemLabel {

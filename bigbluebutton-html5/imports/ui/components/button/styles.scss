@@ -1,42 +1,42 @@
 @import "/imports/ui/stylesheets/variables/_all";
 
-var(--btn-default-color:) var(--color-gray);
-var(--btn-default-bg:) var(--color-white);
-var(--btn-default-border:) var(--color-white);
-
-var(--btn-primary-color:) var(--color-white);
-var(--btn-primary-bg:) var(--color-primary);
-var(--btn-primary-border:) var(--color-primary);
-
-var(--btn-success-color:) var(--color-white);
-var(--btn-success-bg:) var(--color-success);
-var(--btn-success-border:) var(--color-success);
-
-var(--btn-danger-color:) var(--color-white);
-var(--btn-danger-bg:) var(--color-danger);
-var(--btn-danger-border:) var(--color-danger);
-
-var(--btn-border-size:) var(--border-size);
-var(--btn-border-radius:) var(--border-radius);
-var(--btn-font-weight:) 600;
-var(--btn-spacing:) .35rem;
-
-var(--btn-sm-font-size:) var(--font-size-small) * .85;
-var(--btn-sm-padding:) var(--sm-padding-y) var(--sm-padding-x);
-
-var(--btn-md-font-size:) var(--font-size-base) * .85;
-var(--btn-md-padding:) var(--md-padding-y) var(--md-padding-x);
-
-var(--btn-lg-font-size:) var(--font-size-large) * .85;
-var(--btn-lg-padding:) var(--lg-padding-y) var(--lg-padding-x);
-
-var(--btn-jumbo-font-size:) 3rem;
-var(--btn-jumbo-padding:) var(--jumbo-padding-y) var(--jumbo-padding-x);
-
 /* Base
  * ==========
  */
 .button {
+  --btn-default-color: var(--color-gray);
+  --btn-default-bg: var(--color-white);
+  --btn-default-border: var(--color-white);
+
+  --btn-primary-color: var(--color-white);
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-border: var(--color-primary);
+
+  --btn-success-color: var(--color-white);
+  --btn-success-bg: var(--color-success);
+  --btn-success-border: var(--color-success);
+
+  --btn-danger-color: var(--color-white);
+  --btn-danger-bg: var(--color-danger);
+  --btn-danger-border: var(--color-danger);
+
+  --btn-border-size: var(--border-size);
+  --btn-border-radius: var(--border-radius);
+  --btn-font-weight: 600;
+  --btn-spacing: .35rem;
+
+  --btn-sm-font-size: var(--font-size-small) * .85;
+  --btn-sm-padding: var(--sm-padding-y) var(--sm-padding-x);
+
+  --btn-md-font-size: var(--font-size-base) * .85;
+  --btn-md-padding: var(--md-padding-y) var(--md-padding-x);
+
+  --btn-lg-font-size: var(--font-size-large) * .85;
+  --btn-lg-padding: var(--lg-padding-y) var(--lg-padding-x);
+
+  --btn-jumbo-font-size: 3rem;
+  --btn-jumbo-padding: var(--jumbo-padding-y) var(--jumbo-padding-x);
+
   border: none;
   outline: none;
   overflow: visible;
@@ -168,8 +168,8 @@ var(--btn-jumbo-padding:) var(--jumbo-padding-y) var(--jumbo-padding-x);
  */
 
 @mixin button-variant(var(--color), var(--background), var(--border)) {
-  var(--active-background:) darken(var(--background), 10%);
-  var(--active-border:) darken(var(--border), 12%);
+  var(--active-background: darken(var(--background), 10%);
+  var(--active-border: darken(var(--border), 12%);
 
   color: var(--color);
   background-color: var(--background);
@@ -264,10 +264,10 @@ var(--btn-jumbo-padding:) var(--jumbo-padding-y) var(--jumbo-padding-x);
 }
 
 .circle {
-  var(--btn-sm-padding-x:) nth(var(--btn-sm-padding), 2) / 2.75;
-  var(--btn-md-padding-x:) nth(var(--btn-md-padding), 2) / 2.75;
-  var(--btn-lg-padding-x:) nth(var(--btn-lg-padding), 2) / 2.75;
-  var(--btn-jumbo-padding-x:) nth(var(--btn-jumbo-padding), 2) / 2.75;
+  var(--btn-sm-padding-x: nth(var(--btn-sm-padding), 2) / 2.75;
+  var(--btn-md-padding-x: nth(var(--btn-md-padding), 2) / 2.75;
+  var(--btn-lg-padding-x: nth(var(--btn-lg-padding), 2) / 2.75;
+  var(--btn-jumbo-padding-x: nth(var(--btn-jumbo-padding), 2) / 2.75;
 
   border-radius: 50%;
 
