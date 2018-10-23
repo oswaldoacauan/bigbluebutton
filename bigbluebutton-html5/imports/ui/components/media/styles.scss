@@ -29,7 +29,7 @@
   border-top: 0 !important;
   position: relative;
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	border: 10px solid transparent;
   }
 }
@@ -38,13 +38,13 @@
   display: none;
 }
 
-var(--overlay-width:) 20vw;
-var(--overlay-min-width:) 235px;
-var(--overlay-max-width:) 20vw;
-var(--overlay-ratio:) 16 / 9;
-
 .floatingOverlay {
-  @include mq(var(--medium-up)) {
+  --overlay-width: 20vw;
+  --overlay-min-width: 235px;
+  --overlay-max-width: 20vw;
+  --overlay-ratio: calc(16 / 9);
+
+  @include mq($medium-up) {
 	z-index: 1;
 	position: fixed;
 	margin: 0;
@@ -53,8 +53,8 @@ var(--overlay-ratio:) 16 / 9;
 	width: var(--overlay-width);
 	min-width: var(--overlay-min-width);
 	max-width: var(--overlay-max-width);
-	height: calc(#{var(--overlay-width}) / #{var(--overlay-ratio}));
-	min-height: calc(#{var(--overlay-min-width}) / #{var(--overlay-ratio}));
-	max-height: calc(#{var(--overlay-max-width}) / #{var(--overlay-ratio}));
+	height: calc(var(--overlay-width) / var(--overlay-ratio));
+	min-height: calc(var(--overlay-min-width) / var(--overlay-ratio));
+	max-height: calc(var(--overlay-max-width) / var(--overlay-ratio));
   }
 }

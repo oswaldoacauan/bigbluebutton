@@ -1,9 +1,10 @@
-@import "/imports/ui/components/button/styles.scss";
 @import "/imports/ui/stylesheets/variables/_all";
 
-var(--controls-color:) var(--color-gray) !default;
-var(--controls-background:) var(--color-white) !default;
-var(--toolbar-button-border-radius:) 5px;
+:root {
+  --controls-color: var(--color-gray);
+  --controls-background: var(--color-white);
+  --toolbar-button-border-radius: 5px;
+}
 
 .presentationToolbarWrapper,
 .presentationControls,
@@ -29,7 +30,7 @@ var(--toolbar-button-border-radius:) 5px;
   justify-content: center;
   z-index: 1;
 
-  @include mq("#{var(--landscape}) and (max-height:#{upper-bound($small-range)}), #{var(--small-only}")) {
+  @include mq("#{$landscape}) and (max-height:#{upper-bound($small-range)}), #{$small-only}") {
 	transform: scale(.75);
 	transform-origin: bottom;
   }
@@ -57,13 +58,13 @@ var(--toolbar-button-border-radius:) 5px;
 
 
   button:first-of-type {
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 
   button:last-of-type {
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 }
 

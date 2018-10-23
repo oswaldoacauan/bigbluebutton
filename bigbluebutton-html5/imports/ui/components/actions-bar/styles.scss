@@ -15,7 +15,7 @@
   > * {
 	margin: 0 var(--sm-padding-x);
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  margin: 0 var(--sm-padding-y);
 	}
   }
@@ -23,14 +23,14 @@
 
 .left {
   position: absolute;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	bottom: var(--sm-padding-x);
 	left: var(--sm-padding-x);
   }
 }
 
 .centerWithActions {
-  @include mq(var(--xsmall-only)) {
+  @include mq($xsmall-only) {
 	justify-content: flex-end;
   }
 }

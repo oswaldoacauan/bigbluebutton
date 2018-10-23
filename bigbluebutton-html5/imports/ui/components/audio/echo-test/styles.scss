@@ -13,7 +13,7 @@
   &:first-child {
 	margin-right: 3rem;
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  margin-right: 1rem;
 	}
   }

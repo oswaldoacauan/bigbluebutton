@@ -5,12 +5,14 @@
 /* Variables
  * ==========
  */
-var(--user-avatar-border:) var(--color-gray-light);
-var(--user-avatar-text:) var(--color-white);
-var(--user-indicator-voice-bg:) var(--color-success);
-var(--user-indicator-muted-bg:) var(--color-danger);
-var(--user-list-bg:) var(--color-off-white);
-var(--user-color:) currentColor; //picks the current color reference in the class
+:root {
+  --user-avatar-border: var(--color-gray-light);
+  --user-avatar-text: var(--color-white);
+  --user-indicator-voice-bg: var(--color-success);
+  --user-indicator-muted-bg: var(--color-danger);
+  --user-list-bg: var(--color-off-white);
+  --user-color: currentColor; //picks the current color reference in the class
+}
 
 .avatar {
   position: relative;

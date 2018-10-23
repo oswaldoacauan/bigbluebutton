@@ -30,7 +30,7 @@
   flex-direction: column;
   overflow: hidden;
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	flex-direction: row;
   }
 }
@@ -42,14 +42,14 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
   }
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	position: relative;
   }
 }
@@ -88,7 +88,7 @@
 	}
   }
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	flex: 5;
 	order: 2;
   }
@@ -104,16 +104,16 @@
 
   order: 1;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	top: var(--navbar-height);
   }
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	flex: 0 15vw;
 	order: 1;
   }
 
-  @include mq(var(--xlarge-up)) {
+  @include mq($xlarge-up) {
 	flex-basis: 10vw;
   }
 }
@@ -132,19 +132,19 @@
 
   order: 2;
   height: 100%;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	z-index: 3;
 	height: auto;
 	top: var(--navbar-height);
 	overflow: visible;
   }
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	flex: 0 25vw;
 	order: 1;
   }
 
-  @include mq(var(--xlarge-up)) {
+  @include mq($xlarge-up) {
 	flex-basis: 20vw;
   }
 }
@@ -153,7 +153,7 @@
   @extend %full-page;
   z-index: 4;
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	flex: 0 15vw;
 	order: 2;
   }
@@ -166,7 +166,7 @@
   flex-direction: row;
   position: relative;
 
-  @include mq(var(--portrait)) {
+  @include mq($portrait) {
 	flex-direction: column;
   }
 }
@@ -176,7 +176,7 @@
   flex-basis: 15vw;
   order: 2;
 
-  @include mq(var(--portrait)) {
+  @include mq($portrait) {
 	min-height: 35%;
   }
 }

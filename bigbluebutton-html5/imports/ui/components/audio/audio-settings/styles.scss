@@ -7,7 +7,7 @@
 }
 
 .audioNote {
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	font-size: 0.8rem;
   }
 }
@@ -108,7 +108,7 @@
   margin-right: 0.5rem;
   border: none;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	margin-right: auto;
   }
 }

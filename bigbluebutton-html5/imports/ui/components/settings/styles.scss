@@ -4,7 +4,7 @@
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: 100%;
 	flex-flow: column;
   }
@@ -18,7 +18,7 @@
   margin: 0;
   width: calc(100% / 3);
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: 100%;
 	flex-flow: row;
 	flex-wrap: wrap;
@@ -50,7 +50,7 @@
 	@extend %text-elipsis;
   }
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	max-width: 100%;
 	margin-right: var(--sm-padding-x);
 	& > .icon {
@@ -74,7 +74,7 @@
   margin-left: 1rem;
   width: calc(100% / 3 * 2);
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: 100%;
 	margin-left: 0;
 	margin-top: 1rem;

@@ -1,29 +1,31 @@
 @import "../../stylesheets/variables/_all";
 
-var(--toast-default-color:) var(--color-white);
-var(--toast-default-bg:) var(--color-gray);
+:root {
+  --toast-default-color: var(--color-white);
+  --toast-default-bg: var(--color-gray);
 
-var(--toast-info-color:) var(--color-white);
-var(--toast-info-bg:) var(--color-primary);
+  --toast-info-color: var(--color-white);
+  --toast-info-bg: var(--color-primary);
 
-var(--toast-success-color:) var(--color-white);
-var(--toast-success-bg:) var(--color-success);
+  --toast-success-color: var(--color-white);
+  --toast-success-bg: var(--color-success);
 
-var(--toast-error-color:) var(--color-white);
-var(--toast-error-bg:) var(--color-danger);
+  --toast-error-color: var(--color-white);
+  --toast-error-bg: var(--color-danger);
 
-var(--toast-warning-color:) var(--color-white);
-var(--toast-warning-bg:) var(--color-warning);
+  --toast-warning-color: var(--color-white);
+  --toast-warning-bg: var(--color-warning);
 
-var(--background:) var(--color-white);
-var(--background-active:) darken(var(--color-white), 5%);
+  --background: var(--color-white);
+  --background-active: #eee;
+}
 
-@mixin notification-variant(var(--icon-color), var(--icon-bg)) {
+@mixin notification-variant($icon-color, $icon-bg) {
   display: flex;
 
   > .icon {
-	color: var(--icon-color);
-	background-color: var(--icon-bg);
+	color: $icon-color;
+	background-color: $icon-bg;
   }
 }
 
@@ -70,9 +72,9 @@ var(--background-active:) darken(var(--color-white), 5%);
   position: absolute;
   margin-left: -.5em;
   background-color: var(--color-gray-lighter);
-  margin-top: var(--line-height-computed) * .5;
-  margin-bottom: var(--line-height-computed) * .5;
-  @include mq(var(--small-only)) {
+  margin-top: calc(var(--line-height-computed) * .5);
+  margin-bottom: calc(var(--line-height-computed) * .5);
+  @include mq($small-only) {
 	position: relative;
 	margin-left: auto;
   }
@@ -122,7 +124,7 @@ var(--background-active:) darken(var(--color-white), 5%);
   max-height: 75vh;
   overflow: hidden;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	left: var(--sm-padding-y);
 	width: auto;
   }
@@ -179,7 +181,7 @@ var(--background-active:) darken(var(--color-white), 5%);
 	opacity: 1;
   }
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	position: relative;
 	top: auto;
 	right: auto;

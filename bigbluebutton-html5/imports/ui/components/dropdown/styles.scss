@@ -1,12 +1,14 @@
 @import "/imports/ui/stylesheets/variables/_all";
 @import "/imports/ui/stylesheets/mixins/_scrollable";
 
-var(--dropdown-bg:) var(--color-white);
-var(--dropdown-color:) var(--color-text);
-var(--caret-shadow-color:) var(--color-gray);
+:root {
+  --dropdown-bg: var(--color-white);
+  --dropdown-color: var(--color-text);
+  --caret-shadow-color: var(--color-gray);
 
-var(--dropdown-caret-width:) 12px;
-var(--dropdown-caret-height:) 8px;
+  --dropdown-caret-width: 12px;
+  --dropdown-caret-height: 8px;
+}
 
 .dropdown {
   position: relative;
@@ -40,7 +42,7 @@ var(--dropdown-caret-height:) 8px;
 	display: block;
   }
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	z-index: 1015;
 	border-radius: 0;
 	background-color: #fff;
@@ -52,7 +54,7 @@ var(--dropdown-caret-height:) 8px;
 	bottom: 0 !important;
 	border: 0 !important;
 	padding: 0 !important;
-	margin: 0 0 var(--line-height-computed) * 5.25 0 !important;
+	margin: 0 0 calc(var(--line-height-computed) * 5.25) 0 !important;
 	transform: translateX(0) translateY(0) !important;
 
 	&:after, &:before {
@@ -62,7 +64,7 @@ var(--dropdown-caret-height:) 8px;
 }
 
 .scrollable {
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	@include scrollbox-vertical();
 	position: absolute;
 	top: 0;
@@ -80,13 +82,13 @@ var(--dropdown-caret-height:) 8px;
   bottom: 0.8rem;
   border-radius: 0;
   z-index: 1011;
-  font-size: var(--font-size-large) * 1.1;
-  width: calc(100% - #{(var(--line-height-computed) * 2)});
+  font-size: calc(var(--font-size-large) * 1.1);
+  width: calc(100% - (var(--line-height-computed) * 2));
   left: var(--line-height-computed);
   box-shadow: 0 0 0 2rem var(--color-white) !important;
   border: var(--color-white) !important;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	display: block;
   }
 }
@@ -99,7 +101,7 @@ var(--dropdown-caret-height:) 8px;
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: var(--dropdown-caret-height) * 1.25;
+  margin-bottom: calc(var(--dropdown-caret-height) * 1.25);
 
   &:before, &:after {
 	border-left: var(--dropdown-caret-width) solid transparent;
@@ -118,7 +120,7 @@ var(--dropdown-caret-height:) 8px;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: var(--dropdown-caret-height) * 1.25;
+  margin-top: calc(var(--dropdown-caret-height) * 1.25);
 
   &:before, &:after {
 	border-left: var(--dropdown-caret-width) solid transparent;
@@ -136,13 +138,13 @@ var(--dropdown-caret-height:) 8px;
 %right-caret {
   top: 50%;
   transform: translateX(-100%) translateY(-50%);
-  left: -(var(--dropdown-caret-height) * 1.25);
+  left: calc(var(--dropdown-caret-height) * -1.25);
 
   &:before, &:after{
 	border-top: var(--dropdown-caret-width) solid transparent;
 	border-bottom: var(--dropdown-caret-width) solid transparent;
 	border-left: var(--dropdown-caret-height) solid var(--dropdown-bg);
-	margin-right: -(var(--dropdown-caret-height));
+	margin-right: calc(var(--dropdown-caret-height) * -1);
 	top: 50%;
 	right: 0;
   }
@@ -155,13 +157,13 @@ var(--dropdown-caret-height:) 8px;
 %left-caret {
   top: 50%;
   transform: translateX(100%) translateY(-50%);
-  right: -(var(--dropdown-caret-height) * 1.25);
+  right: calc(var(--dropdown-caret-height) * -1.25);
 
   &:before, &:after {
 	border-top: var(--dropdown-caret-width) solid transparent;
 	border-bottom: var(--dropdown-caret-width) solid transparent;
 	border-right: var(--dropdown-caret-height) solid var(--dropdown-bg);
-	margin-left: -(var(--dropdown-caret-height));
+	margin-left: calc(var(--dropdown-caret-height) * -1);
 	top: 50%;
 	left: 0;
   }
@@ -174,7 +176,7 @@ var(--dropdown-caret-height:) 8px;
 %horz-center-caret {
   &:after, &:before {
 	left: 50%;
-	margin-left: -(var(--dropdown-caret-width));
+	margin-left: calc(var(--dropdown-caret-width) * -1);
   }
 }
 
@@ -183,7 +185,7 @@ var(--dropdown-caret-height:) 8px;
   left: 100%;
 
   &:after, &:before {
-	right: var(--dropdown-caret-width) / 2;
+	right: calc(var(--dropdown-caret-width) / 2);
   }
 }
 
@@ -193,13 +195,13 @@ var(--dropdown-caret-height:) 8px;
   left: auto;
 
   &:after, &:before {
-	left: var(--dropdown-caret-width) / 2;
+	left: calc(var(--dropdown-caret-width) / 2);
   }
 }
 
 %vert-center-caret {
   &:after, &:before {
-	margin-top: -(var(--dropdown-caret-width));
+	margin-top: calc(var(--dropdown-caret-width) * -1);
   }
 }
 
@@ -208,7 +210,7 @@ var(--dropdown-caret-height:) 8px;
 
   &:after, &:before {
 	top: 0;
-	margin-top: var(--dropdown-caret-width) / 2;
+	margin-top: calc(var(--dropdown-caret-width) / 2);
   }
 }
 
@@ -218,7 +220,7 @@ var(--dropdown-caret-height:) 8px;
 
   &:after, &:before {
 	top: auto;
-	bottom: var(--dropdown-caret-width) / 2;
+	bottom: calc(var(--dropdown-caret-width) / 2);
   }
 }
 
@@ -232,7 +234,7 @@ var(--dropdown-caret-height:) 8px;
   @extend %horz-right-caret;
   min-width: 11.5rem;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: auto;
   }
 }
@@ -257,7 +259,7 @@ var(--dropdown-caret-height:) 8px;
   @extend %horz-left-caret;
   min-width: 9rem;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: auto;
   }
 }

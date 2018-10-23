@@ -11,11 +11,11 @@
   overflow: auto;
   outline: none;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	max-width: 95vw;
   }
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	max-width: 80vw;
   }
 }

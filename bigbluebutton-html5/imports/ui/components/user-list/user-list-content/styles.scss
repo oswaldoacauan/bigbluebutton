@@ -42,7 +42,7 @@
 }
 
 .footer{
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 		margin: 4rem;
   }
 }

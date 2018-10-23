@@ -1,10 +1,8 @@
 @import "../../../stylesheets/variables/_all";
 @import "../../../stylesheets/mixins/_scrollable";
 
-var(--item-height:) 1rem;
-
 @keyframes bar-stripes {
-  from { background-position: var(--item-height) 0; }
+  from { background-position: 1rem 0; }
   to { background-position: 0 0; }
 }
 
@@ -26,7 +24,7 @@ var(--item-height:) 1rem;
 	text-align: left;
 
 	> tr {
-	  border-bottom: 1px solid transparentize(var(--color-gray-light), .85);
+	  border-bottom: 1px solid var(--color-gray-light);
 
 	  &:last-child {
 	    border-bottom: 0;
@@ -34,12 +32,12 @@ var(--item-height:) 1rem;
 
 	  &:hover,
 	  &:focus {
-	    background-color: transparentize(var(--color-gray-light), .85);
+	    background-color: var(--color-gray-light);
 	  }
 
 	  th,
 	  td {
-	    padding: (var(--sm-padding-y) * 2) (var(--sm-padding-x) / 2);
+	    padding: calc(var(--sm-padding-y) * 2) calc(var(--sm-padding-x) / 2);
 	    white-space: nowrap;
 	  }
 
@@ -72,7 +70,7 @@ var(--item-height:) 1rem;
 }
 
 .tableItemName {
-  height: var(--item-height);
+  height: 1rem;
   width: auto;
   position: relative;
 
@@ -98,19 +96,19 @@ var(--item-height:) 1rem;
 }
 
 .tableItemNew {
-  background-color: transparentize(var(--color-primary), .95);
+  background-color: var(--color-primary);
 }
 
 .tableItemUploading {
-  background-color: transparentize(var(--color-primary), .75);
+  background-color: var(--color-primary);
 }
 
 .tableItemConverting {
-  background-color: transparentize(var(--color-success), .75);
+  background-color: var(--color-success);
 }
 
 .tableItemError {
-  background-color: transparentize(var(--color-danger), .75);
+  background-color: var(--color-danger);
 }
 
 .tableItemAnimated {
@@ -123,7 +121,7 @@ var(--item-height:) 1rem;
 	transparent 75%,
 	transparent
   );
-  background-size: var(--item-height) var(--item-height);
+  background-size: 1rem 1rem;
   animation: bar-stripes 1s linear infinite;
 }
 
@@ -157,25 +155,25 @@ var(--item-height:) 1rem;
   display: block;
   border: 2px dashed;
   border-radius: var(--border-radius);
-  padding: (var(--lg-padding-y) * 2.5) (var(--lg-padding-x) * 2.5);
-  margin-top: var(--lg-padding-y) * 5;
+  padding: calc(var(--lg-padding-y) * 2.5) calc(var(--lg-padding-x) * 2.5);
+  margin-top: calc(var(--lg-padding-y) * 5);
   text-align: center;
   font-size: var(--font-size-large);
   cursor: pointer;
 }
 
 .dropzoneActive {
-  background-color: transparentize(var(--color-gray-light), .85);
+  background-color: var(--color-gray-light);
 }
 
 .dropzoneReject {
   color: var(--color-danger);
-  background-color: transparentize(var(--color-danger), .80);
+  background-color: var(--color-danger);
   cursor: no-drop;
 }
 
 .dropzoneIcon {
-  font-size: var(--font-size-large) * 3;
+  font-size: calc(var(--font-size-large) * 3);
 }
 
 .dropzoneMessage {

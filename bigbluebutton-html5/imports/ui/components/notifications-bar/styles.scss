@@ -1,23 +1,25 @@
 @import "../../stylesheets/variables/_all";
 
-var(--nb-default-color:) var(--color-gray);
-var(--nb-default-bg:) var(--color-white);
-var(--nb-default-border:) var(--color-white);
+:root {
+  --nb-default-color: var(--color-gray);
+  --nb-default-bg: var(--color-white);
+  --nb-default-border: var(--color-white);
 
-var(--nb-primary-color:) var(--color-white);
-var(--nb-primary-bg:) var(--color-primary);
-var(--nb-primary-border:) var(--color-primary);
+  --nb-primary-color: var(--color-white);
+  --nb-primary-bg: var(--color-primary);
+  --nb-primary-border: var(--color-primary);
 
-var(--nb-success-color:) var(--color-white);
-var(--nb-success-bg:) var(--color-success);
-var(--nb-success-border:) var(--color-success);
+  --nb-success-color: var(--color-white);
+  --nb-success-bg: var(--color-success);
+  --nb-success-border: var(--color-success);
 
-var(--nb-danger-color:) var(--color-white);
-var(--nb-danger-bg:) var(--color-danger);
-var(--nb-danger-border:) var(--color-danger);
+  --nb-danger-color: var(--color-white);
+  --nb-danger-bg: var(--color-danger);
+  --nb-danger-border: var(--color-danger);
+}
 
 .notificationsBar {
-  padding: var(--line-height-computed) / 2;
+  padding: calc(var(--line-height-computed) / 2);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,10 +27,10 @@ var(--nb-danger-border:) var(--color-danger);
   font-weight: 600;
 }
 
-@mixin nb-variant(var(--color), var(--background), var(--border)) {
-  color: var(--color);
-  background-color: var(--background);
-  border-color: var(--border);
+@mixin nb-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
 }
 
 .default {

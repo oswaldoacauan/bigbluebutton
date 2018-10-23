@@ -1,11 +1,5 @@
 @import "../../stylesheets/variables/_all";
 
-// pollingAnswer position offsets
-var(--xs-portrait-offset:) 8.75em;
-var(--xs-landscape-offset:) 4.75em;
-var(--s-portrait-offset:) 11.75em;
-var(--s-landscape-offset:) 1.75em;
-
 .pollingContainer {
   order: 2;
   width: 100%;
@@ -14,7 +8,7 @@ var(--s-landscape-offset:) 1.75em;
   flex-direction: column;
   padding-bottom: 5px;
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	padding-bottom: 10px;
   }
 }
@@ -36,18 +30,18 @@ var(--s-landscape-offset:) 1.75em;
   z-index: 1;
 
   :global(.browser-safari) & {
-	@include mq(var(--ip5-portrait)) {
-	  bottom: var(--xs-portrait-offset);
-	}
-	@include mq(var(--ip678-portrait)) {
-	  bottom: var(--s-portrait-offset);
-	}
-	@include mq(var(--ip5-landscape)) {
-	  bottom: var(--xs-landscape-offset);
-	}
-	@include mq(var(--ip678-landscape)) {
-	  bottom: var(--s-landscape-offset);
-	}
+    @include mq($ip5-portrait) {
+      bottom: 8.75em;
+    }
+    @include mq($ip678-portrait) {
+      bottom: 4.75em;
+    }
+    @include mq($ip5-landscape) {
+      bottom: 11.75em;
+    }
+    @include mq($ip678-landscape) {
+      bottom: 1.75em;
+    }
   }
 }
 
@@ -56,7 +50,7 @@ var(--s-landscape-offset:) 1.75em;
   margin-left: 5px;
   overflow: hidden;
 
-  @include mq(var(--medium-up)) {
+  @include mq($medium-up) {
 	margin-left: 10px;
   }
 

@@ -3,7 +3,8 @@
 /* Base
  * ==========
  */
-.button {
+
+:root {
   --btn-default-color: var(--color-gray);
   --btn-default-bg: var(--color-white);
   --btn-default-border: var(--color-white);
@@ -25,18 +26,20 @@
   --btn-font-weight: 600;
   --btn-spacing: .35rem;
 
-  --btn-sm-font-size: var(--font-size-small) * .85;
+  --btn-sm-font-size: calc(var(--font-size-small) * .85);
   --btn-sm-padding: var(--sm-padding-y) var(--sm-padding-x);
 
-  --btn-md-font-size: var(--font-size-base) * .85;
+  --btn-md-font-size: calc(var(--font-size-base) * .85);
   --btn-md-padding: var(--md-padding-y) var(--md-padding-x);
 
-  --btn-lg-font-size: var(--font-size-large) * .85;
+  --btn-lg-font-size: calc(var(--font-size-large) * .85);
   --btn-lg-padding: var(--lg-padding-y) var(--lg-padding-x);
 
   --btn-jumbo-font-size: 3rem;
   --btn-jumbo-padding: var(--jumbo-padding-y) var(--jumbo-padding-x);
+}
 
+.button {
   border: none;
   outline: none;
   overflow: visible;
@@ -166,56 +169,52 @@
 /* Colors
  * ==========
  */
-
-@mixin button-variant(var(--color), var(--background), var(--border)) {
-  var(--active-background: darken(var(--background), 10%);
-  var(--active-border: darken(var(--border), 12%);
-
-  color: var(--color);
-  background-color: var(--background);
-  border: var(--border-size-large) solid transparent;
+ @mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border: --var(border-size-large) solid transparent;
 
   &:focus,
   .buttonWrapper:focus:not([aria-disabled="true"]) & {
-	outline: none !important;
-	color: var(--color);
-	background-color: var(--background);
-	background-clip: padding-box;
-	border: var(--border-size-large) solid transparent;
-	box-shadow: 0 0 0 var(--border-size) var(--border);
+    outline: none !important;
+    color: $color;
+    background-color: $background;
+    background-clip: padding-box;
+    border: --var(border-size-large) solid transparent;
+    box-shadow: 0 0 0 --var(border-size) $border;
   }
 
   &:hover,
   .buttonWrapper:hover & {
-	color: var(--color);
-	background-color: var(--active-background);
-	border-color: var(--active-border);
-	border: var(--border-size-large) solid transparent;
+    color: $color;
+    // background-color: $active-background; TODO;
+    // border-color: $active-border; TODO;
+    border: --var(border-size-large) solid transparent;
   }
 }
 
-@mixin button-ghost-variant(var(--color), var(--variant)) {
-  color: var(--color);
+@mixin button-ghost-variant($color, $variant) {
+  color: $color;
   background-image: none;
   background-color: transparent;
-  border: var(--border-size-large) solid transparent;
+  border: --var(border-size-large) solid transparent;
 
   &:focus,
   .buttonWrapper:focus & {
-	color: var(--color);
-	outline: none !important;
-	background-color: var(--variant);
-	background-clip: padding-box;
-	border: var(--border-size-large) solid transparent;
-	box-shadow: 0 0 0 var(--border-size) var(--color);
+    color: $color;
+    outline: none !important;
+    background-color: $variant;
+    background-clip: padding-box;
+    border: --var(border-size-large) solid transparent;
+    box-shadow: 0 0 0 --var(border-size-large) $color;
   }
 
   &:hover,
   .buttonWrapper:hover & {
-	color: var(--color);
-	background-color: var(--variant);
-	border-color: var(--variant);
-	border: var(--border-size-large) solid transparent;
+    color: $color;
+    background-color: $variant;
+    border-color: $variant;
+    border: --var(border-size-large) solid transparent;
   }
 }
 
@@ -264,10 +263,10 @@
 }
 
 .circle {
-  var(--btn-sm-padding-x: nth(var(--btn-sm-padding), 2) / 2.75;
-  var(--btn-md-padding-x: nth(var(--btn-md-padding), 2) / 2.75;
-  var(--btn-lg-padding-x: nth(var(--btn-lg-padding), 2) / 2.75;
-  var(--btn-jumbo-padding-x: nth(var(--btn-jumbo-padding), 2) / 2.75;
+  --btn-sm-padding-x: var(--lg-padding-x) / 2.75;
+  --btn-md-padding-x: var(--md-padding-x) / 2.75;
+  --btn-lg-padding-x: var(--lg-padding-x) / 2.75;
+  --btn-jumbo-padding-x: var(--jumbo-padding-x) / 2.75;
 
   border-radius: 50%;
 

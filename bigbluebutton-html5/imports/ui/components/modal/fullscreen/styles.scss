@@ -6,7 +6,7 @@
   align-self: flex-start;
   padding: (var(--line-height-computed) / 2) var(--line-height-computed);
   outline: none;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	width: 100%
   }
 }

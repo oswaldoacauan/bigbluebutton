@@ -12,7 +12,7 @@
 
 .imageSize {
   height: 4rem;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	margin: auto 1rem;
   };
 }
@@ -23,7 +23,7 @@
   margin-top: .5rem;
   color: inherit;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	margin-top: 0;
 	font-size: 90%;
   };
@@ -35,7 +35,7 @@
   flex-direction: column;
   align-items: center;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	flex-direction: row;
   };
 }

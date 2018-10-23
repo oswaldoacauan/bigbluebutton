@@ -1,14 +1,17 @@
 @import "../../../stylesheets/variables/_all";
 
-var(--toolbar-margin:) .8rem;
-var(--toolbar-box-shadow:) 0 0 10px -2px rgba(0, 0, 0, .25);
-var(--toolbar-button-width:) 3rem;
-var(--toolbar-button-height:) 3rem;
-var(--toolbar-button-font-size:) 1.75rem;
-var(--toolbar-button-border:) 1px;
-var(--toolbar-button-border-radius:) 5px;
-var(--toolbar-list-bg:) darken(var(--color-white), 10%);
-var(--toolbar-list-color:) var(--color-gray);
+:root {
+  --toolbar-margin: .8rem;
+  --toolbar-box-shadow: 0 0 10px -2px rgba(0, 0, 0, .25);
+  --toolbar-button-width: 3rem;
+  --toolbar-button-height: 3rem;
+  --toolbar-button-font-size: 1.75rem;
+  --toolbar-button-border: 1px;
+  --toolbar-button-border-radius: 5px;
+  --toolbar-list-bg: #ddd;
+  --toolbar-list-bg-focus: #c6c6c6;
+  --toolbar-list-color: var(--color-gray);
+}
 
 .toolbarContainer {
   display: flex;
@@ -21,7 +24,7 @@ var(--toolbar-list-color:) var(--color-gray);
   bottom: 0;
   pointer-events: none;
 
-  @include mq("#{var(--landscape}) and (max-height:#{upper-bound($small-range)}), #{var(--small-only}")) {
+  @include mq("#{$landscape} and (max-height:#{upper-bound($small-range)}), #{$small-only}") {
 	transform: scale(.75);
 	transform-origin: right;
   }
@@ -132,7 +135,7 @@ var(--toolbar-list-color:) var(--color-gray);
   padding: initial;
 
   &:hover, &:focus {
-	background-color: darken(var(--toolbar-list-bg), 10%);
+	background-color: #bbb;
   }
 
   i {
@@ -148,11 +151,11 @@ var(--toolbar-list-color:) var(--color-gray);
   background-color: var(--toolbar-list-color) !important;
 
   i {
-	color: darken(var(--toolbar-list-bg), 10%) !important;
+	color: var(--toolbar-list-bg-focus) !important;
   }
 
   svg {
-	fill: darken(var(--toolbar-list-bg), 10%);
+	fill: var(--toolbar-list-bg-focus);
   }
 }
 
@@ -165,7 +168,7 @@ var(--toolbar-list-color:) var(--color-gray);
 .textThickness {
   font-family: Arial, sans-serif;
   font-weight: normal;
-  text-shadow: -1px 0 darken(var(--toolbar-list-bg), 10%), 0 1px darken(var(--toolbar-list-bg), 10%), 1px 0 darken(var(--toolbar-list-bg), 10%), 0 -1px darken(var(--toolbar-list-bg), 10%);
+  text-shadow: -1px 0 var(--toolbar-list-bg-focus), 0 1px var(--toolbar-list-bg-focus), 1px 0 var(--toolbar-list-bg-focus), 0 -1px var(--toolbar-list-bg-focus);
   margin: auto;
   color: var(--toolbar-list-color);
 }

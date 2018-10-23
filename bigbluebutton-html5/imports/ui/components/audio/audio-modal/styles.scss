@@ -20,7 +20,7 @@
   .audioBtn:first-child {
 	margin-right: 3rem;
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  margin-right: 1rem;
 	}
   }
@@ -95,7 +95,7 @@
   border: 5px solid  #f1f8ff;
   font-size: 3.5rem;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	font-size: 2.5rem;
   }
 }
@@ -120,7 +120,7 @@
   font-size: 1.3rem;
   white-space: normal;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	font-size: 1rem;
 	padding: 0 1rem;
   }

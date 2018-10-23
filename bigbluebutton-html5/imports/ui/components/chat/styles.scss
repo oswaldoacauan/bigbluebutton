@@ -1,28 +1,27 @@
 @import "/imports/ui/stylesheets/mixins/focus";
 @import "/imports/ui/stylesheets/variables/_all";
 
-var(--icon-offset:) -.4em;
-var(--background-active:) darken(var(--color-white), 5%);
 
-@mixin lineClamp(var(--lineHeight:) 1em, var(--lineCount:) 1, var(--bgColor:) var(--color-white)) {
+
+@mixin lineClamp($lineHeight: 1em, $lineCount: 1, $bgColor: inherit) {
   display: block;
   box-orient: vertical;
   position: relative;
   word-break: break-word;
 
   overflow: hidden;
-  line-height: var(--lineHeight);
-  max-height: var(--lineHeight) * var(--lineCount);
+  line-height: $lineHeight;
+  max-height: calc(#{"$lineHeight * $lineCount"});
 
   &:before {
 	  content: '...';
 	  width: 10%;
-	  height: var(--lineHeight);
+	  height: lineHeight;
 	  text-align: right;
 	  position: absolute;
 	  right: 0;
 	  bottom: 0;
-	  background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--bgColor) 75%);
+	  background: linear-gradient(to right, rgba(255, 255, 255, 0), $bgColor 75%);
   }
 
   &:after {
@@ -30,9 +29,9 @@ var(--background-active:) darken(var(--color-white), 5%);
 	position: absolute;
 	right: 0;
 	width: 1em;
-	height: var(--lineHeight);
+	height: $lineHeight;
 	margin-top: 0.2em;
-	background-color: var(--bgColor);
+	background-color: $bgColor;
   }
 }
 
@@ -81,7 +80,7 @@ var(--background-active:) darken(var(--color-white), 5%);
   i {
 	font-size: 0.85em;
 	color: var(--color-gray-dark) !important;
-	top: var(--icon-offset);
+	top: -.4em;
   }
 
   &:focus,
@@ -112,12 +111,12 @@ var(--background-active:) darken(var(--color-white), 5%);
   color: var(--color-gray-dark);
   font-weight: bold;
   background-color: inherit;
-  @include lineClamp(var(--lineHeight:) 1em, var(--lineCount:) 1, var(--bgColor:) inherit);
+  @include lineClamp(1em, 1);
 }
 
 .contentMessage {
   margin-top: .2rem;
   font-size: 80%;
   background-color: inherit;
-  @include lineClamp(var(--lineHeight:) var(--font-size-small), var(--lineCount:) 10, var(--bgColor:) inherit);
+  @include lineClamp(var(--font-size-small), 10);
 }

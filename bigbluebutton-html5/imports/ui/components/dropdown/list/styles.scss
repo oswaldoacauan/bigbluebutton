@@ -11,7 +11,7 @@
   overflow-wrap: break-word;
   white-space: pre-line;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	font-size: calc(var(--font-size-large) * 1.1);
 	padding: var(--line-height-computed);
   }
@@ -26,7 +26,7 @@
   @extend %list;
   padding: 0;
   flex-direction: row;
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	flex-direction: column;
 	padding: var(--line-height-computed);
   }
@@ -53,14 +53,14 @@
   display: flex;
   flex: 1 1 100%;
 
-  @include mq(var(--small-only)) {
+  @include mq($small-only) {
 	justify-content: center;
   }
 
   .verticalList & {
 	padding: calc(var(--line-height-computed) / 3) 0;
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  padding: calc(var(--line-height-computed) / 1.5) 0;
 	}
   }
@@ -68,7 +68,7 @@
   .horizontalList & {
 	padding: 0 (var(--line-height-computed) / 3);
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  padding: calc(var(--line-height-computed) / 1.5) 0;
 	}
   }
@@ -93,7 +93,7 @@
 	  padding-top: (var(--line-height-computed) / 2);
 	  padding-bottom: (var(--line-height-computed) / 2);
 
-	  @include mq(var(--small-only)) {
+	  @include mq($small-only) {
 	    margin: 0;
 	    padding: calc(var(--line-height-computed) / 1.5) 0;
 	    margin-left: calc((var(--line-height-computed) / 2) * -1);
@@ -103,7 +103,7 @@
 	  }
 	}
 
-	@include mq(var(--small-only)) {
+	@include mq($small-only) {
 	  border-radius: 0.2rem;
 	}
 

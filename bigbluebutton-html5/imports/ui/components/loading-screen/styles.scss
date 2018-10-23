@@ -3,9 +3,12 @@
 /* Variables
  * ==========
  */
-var(--loader-bg:) var(--color-gray-dark);
-var(--loader-bullet:) var(--color-white);
-var(--loader-message-color:) var(--color-white);
+
+:root {
+  --loader-bg: var(--color-gray-dark);
+  --loader-bullet: var(--color-white);
+  --loader-message-color: var(--color-white);
+}
 
 .background {
   position: fixed;

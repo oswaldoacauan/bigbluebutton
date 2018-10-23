@@ -25,7 +25,7 @@
 	    color: black;
 	    font-weight: 100;
 
-	    @include mq(var(--small-only)) {
+	    @include mq($small-only) {
 	      font-size: 2rem;
 	    };
 

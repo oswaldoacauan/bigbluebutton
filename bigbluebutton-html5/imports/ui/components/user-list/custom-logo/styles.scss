@@ -3,8 +3,8 @@
 .separator {
   height: 1px;
   background-color: var(--color-gray-lighter);
-  margin-top: var(--line-height-computed) * .5;
-  margin-bottom: var(--line-height-computed) * .5;
+  margin-top: calc(var(--line-height-computed) * .5);
+  margin-bottom: calc(var(--line-height-computed) * .5);
 }
 
 .branding {
