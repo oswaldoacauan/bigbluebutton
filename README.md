@@ -1,4 +1,4 @@
-BigBlueButton
+BigBlueButton2
 =============
 BigBlueButton is an open source web conferencing system.  
 
