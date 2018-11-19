@@ -69,7 +69,7 @@ export function joinRouteHandler(callback) {
 
         logger.info(clientInfo);
 
-        callback('all is good', null);
+        callback(sessionToken, null);
       }
     });
 }

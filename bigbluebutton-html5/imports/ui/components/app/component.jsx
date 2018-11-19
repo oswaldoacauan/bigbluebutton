@@ -64,6 +64,24 @@ const defaultProps = {
   locale: 'en',
 };
 
+import { withTracker } from 'meteor/react-meteor-data';
+
+import Users from '/imports/api/users';
+const UserStringify = ({user}) => <li>{JSON.stringify(user.name)}</li>;
+const UsersObj = ({users}) => <ul><li>obj</li>{users.map(user => <UserStringify user={user}/>)}</ul>
+const UsersObjContainer = withTracker(() => ({
+  users: Users.find().fetch(),
+}))(UsersObj);
+
+const UserStringifyById = withTracker(({id}) => ({
+  user: Users.findOne(id),
+}))(UserStringify);
+const UsersIds = ({users}) => <ul><li>ids</li>{users.map(user => <UserStringifyById id={user}/>)}</ul>
+const UsersIdsContainer = withTracker(() => ({
+  users: Users.find({}, { fields: { _id: 1 }}).map(u => u._id),
+}))(UsersIds);
+
+
 class App extends Component {
   constructor() {
     super();
@@ -127,6 +145,8 @@ class App extends Component {
 
     return (
       <header className={styles.navbar}>
+        <UsersIdsContainer />
+        <UsersObjContainer />
         {navbar}
       </header>
     );
