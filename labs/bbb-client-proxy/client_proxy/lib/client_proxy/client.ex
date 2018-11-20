@@ -1,7 +1,6 @@
 defmodule ClientProxy.Client do
   use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
 
-
   def via_tuple(name), do: {:via, Registry, {Registry.Client, name}}
 
   def start_link(name) when is_binary(name), do:
@@ -26,7 +25,7 @@ defmodule ClientProxy.Client do
   end
 
   def handle_info({_, _, _, :message, message}, state) do
-    #IO.puts(inspect message)
+    IO.puts(inspect message)
     rx_msg = Poison.decode!(message.payload)
     ClientProxyWeb.Endpoint.broadcast("client:" <> "foo", "new_msg", rx_msg["core"])
     #ClientProxyWeb.Endpoint.broadcast("users_socket:" <> "foo", "disconnect", %{})

@@ -8,33 +8,36 @@ import { joinRouteHandler, authenticatedRouteHandler } from '/imports/startup/cl
 import Base from '/imports/startup/client/base';
 import LoadingScreen from '/imports/ui/components/loading-screen/component';
 import {Socket} from "phoenix";
+import Omegalul from '/imports/omegalul';
+
+import '/imports/api/group-chat/zerver/eventHandlers';
+import '/imports/api/group-chat-msg/zerver/eventHandlers';
 
 let MsgBus = {
-  init(socket){
+  init(socket, token){
     socket.connect()
-    this.onReady(socket, "foo")
+    socket.onOpen(() => this.onReady(socket, token));
   },
 
   onReady(socket, authToken) {
     let lastSeenId = 0
 
-    let clientChannel = socket.channel("client:" + authToken, () => {
-      return {last_seen_id: lastSeenId}
-    })
+    let channel = socket.channel("client:" + authToken, {token: authToken})
 
-    clientChannel.on("ping", (resp) => {
+    channel.on("ping", (resp) => {
       console.log("Received ping message from server.")
     })
 
-    clientChannel.on("new_msg", (resp) => {
-      console.log("Received new_msg message from server." + resp)
+    channel.on("new_msg", (msg) => {
+      const { header, body } = msg;
+      const { meetingId } = header;
+      const eventName = header.name;
+      Omegalul.emit(eventName, { header, body }, meetingId)
     })
-
-    clientChannel.join()
-      .receive("ok", resp => {
-        console.log(resp)
-      })
-      .receive("error", reason => console.log("joined failed", reason) )
+    channel.join()
+      .receive("ok", ({messages}) => console.log("catching up", messages) )
+      .receive("error", ({reason}) => console.log("failed join", reason) )
+      .receive("timeout", () => console.log("Networking issue. Still waiting..."))
 
   }
 
@@ -67,11 +70,12 @@ Meteor.startup(() => {
     }
     authenticatedRouteHandler(() => {
       console.log('@@@', value);
+      value = 'foo';
       let socket = new Socket("ws://bbb.localhost.imdt.com.br:4000/socket", {
-        params: {token: 'foo'},//value},
+        params: {token: value},
         logger: (kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }
       })
-      MsgBus.init(socket)
+      MsgBus.init(socket, value)
 
 
       // set defaults
@@ -85,3 +89,30 @@ Meteor.startup(() => {
     });
   });
 });
+
+// // import '/imports/startup/zerver';
+
+// // 2x
+// import '/imports/api/meetings/zerver';
+// import '/imports/api/users/zerver';
+// import '/imports/api/annotations/zerver';
+// import '/imports/api/cursor/zerver';
+// import '/imports/api/polls/zerver';
+// import '/imports/api/captions/zerver';
+// import '/imports/api/presentations/zerver';
+// import '/imports/api/presentation-pods/zerver';
+// import '/imports/api/presentation-upload-token/zerver';
+// import '/imports/api/slides/zerver';
+// import '/imports/api/breakouts/zerver';
+// import '/imports/api/group-chat/zerver';
+// import '/imports/api/group-chat-msg/zerver';
+// import '/imports/api/screenshare/zerver';
+// import '/imports/api/users-settings/zerver';
+// import '/imports/api/voice-users/zerver';
+// import '/imports/api/whiteboard-multi-user/zerver';
+// import '/imports/api/video/zerver';
+
+// // Commons
+// import '/imports/api/log-client/zerver';
+// import '/imports/api/common/zerver/helpers';
+// import '/imports/startup/zerver/logger';

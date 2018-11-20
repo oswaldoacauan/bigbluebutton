@@ -24,3 +24,4 @@ http@1.3.0
 dynamic-import@0.2.0
 rocketchat:streamer
 session
+insecure

@@ -2,13 +2,19 @@ import { Meteor } from 'meteor/meteor';
 
 const GroupChat = new Mongo.Collection('group-chat');
 
-if (Meteor.isServer) {
-  GroupChat._ensureIndex({
-    meetingId: 1, chatId: 1, access: 1, users: 1,
-  });
-}
+// if (Meteor.isServer) {
+//   GroupChat._ensureIndex({
+//     meetingId: 1, chatId: 1, access: 1, users: 1,
+//   });
+// }
 
 export default GroupChat;
+
+GroupChat.allow({
+  insert() { return true; },
+  update() { return true; },
+  remove() { return true; },
+});
 
 const CHAT_ACCESS = {
   PUBLIC: 'PUBLIC_ACCESS',

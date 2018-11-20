@@ -4,7 +4,7 @@ import Users from '/imports/api/users';
 const Streamer = new Meteor.Streamer('cursor', { retransmit: false, });
 
 if (Meteor.isServer) {
-  import publishCursorUpdate from './server/methods/publishCursorUpdate';
+  import publishCursorUpdate from './zerver/methods/publishCursorUpdate';
 
   Streamer.on('publish', (message) => {
     publishCursorUpdate(message.credentials, message.payload);

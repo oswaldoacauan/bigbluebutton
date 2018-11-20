@@ -11,7 +11,8 @@ defmodule ClientProxyWeb.ClientChannel do
 
   def handle_info({:after_join, auth_token}, socket) do
     {:ok, client} = ClientProxy.ClientSupervisor.start_client(auth_token)
-    ClientProxy.Subscriber.subscribe(client, "from-akka-apps-wb-redis-channel")
+    ClientProxy.Subscriber.subscribe(client, "from-akka-apps-redis-channel")
+    # ClientProxy.Subscriber.subscribe(client, "to-html5-redis-channel")
     {:noreply, socket}
   end
 
