@@ -10,7 +10,7 @@ import { withModalMounter } from '/imports/ui/components/modal/service';
 import VideoPreviewContainer from '/imports/ui/components/video-preview/container';
 import Media from './component';
 import MediaService, { getSwapLayout } from './service';
-import PresentationPodsContainer from '../presentation-pod/container';
+import PresentationPodsContainer from '../presentation-pod/component';
 import ScreenshareContainer from '../screenshare/container';
 import DefaultContent from '../presentation/default-content/component';
 

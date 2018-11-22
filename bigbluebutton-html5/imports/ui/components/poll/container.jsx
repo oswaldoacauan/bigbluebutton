@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
 import Presentations from '/imports/api/presentations';
-import PresentationAreaService from '/imports/ui/components/presentation/service';
+import { getCurrentSlideByPod } from '/imports/ui/selectors/SlideSelectors';
 import Poll from './component';
 import Service from './service';
 
@@ -19,14 +19,16 @@ const PollContainer = ({ ...props }) => {
   return null;
 };
 
-export default withTracker(({ }) => {
+export default withTracker(() => {
   Meteor.subscribe('current-poll', Auth.meetingID);
 
+  // TODO: This will not work when we start to display multiple pods
+  // because we can have multiple current presentations
   const currentPresentation = Presentations.findOne({
     current: true,
   });
 
-  const currentSlide = PresentationAreaService.getCurrentSlide(currentPresentation.podId);
+  const currentSlide = getCurrentSlideByPod(currentPresentation.podId);
 
   const startPoll = type => makeCall('startPoll', type, currentSlide.id);
 

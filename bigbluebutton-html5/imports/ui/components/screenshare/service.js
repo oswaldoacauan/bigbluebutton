@@ -1,7 +1,6 @@
 import Screenshare from '/imports/api/screenshare';
 import VertoBridge from '/imports/api/screenshare/client/bridge';
 import KurentoBridge from '/imports/api/screenshare/client/bridge';
-import PresentationService from '/imports/ui/components/presentation/service';
 
 // when the meeting information has been updated check to see if it was
 // screensharing. If it has changed either trigger a call to receive video
@@ -15,7 +14,7 @@ const isVideoBroadcasting = () => {
 
   const hasStream = ds.screenshare.stream ? true : false;
   // TODO commented out isPresenter to enable screen viewing to the presenter
-  return hasStream; // && !PresentationService.isPresenter();
+  return hasStream;
 }
 
 // if remote screenshare has been ended disconnect and hide the video stream

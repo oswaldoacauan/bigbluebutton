@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { getSwapLayoutStatus } from '/imports/ui/selectors/AppSelectors';
+import { getCurrentUserIsPodOwner } from '/imports/ui/selectors/PresentationPodSelectors';
+import { getCurrentSlideByPod } from '/imports/ui/selectors/SlideSelectors';
+import { getMultiUserStatusByWhiteboard } from '/imports/ui/selectors/WhiteboardMultiUserSelectors';
+
 import WhiteboardOverlayContainer from '/imports/ui/components/whiteboard/whiteboard-overlay/container';
 import WhiteboardToolbarContainer from '/imports/ui/components/whiteboard/whiteboard-toolbar/container';
 import CursorWrapperContainer from './cursor/cursor-wrapper-container/container';
@@ -13,7 +20,7 @@ import { styles } from './styles.scss';
 const HUNDRED_PERCENT = 100;
 const MAX_PERCENT = 400;
 
-export default class PresentationArea extends Component {
+export class PresentationArea extends Component {
   constructor() {
     super();
 
@@ -366,6 +373,19 @@ export default class PresentationArea extends Component {
     );
   }
 }
+
+export default withTracker(({ podId, ...props }) => {
+  const isLayoutSwaped = getSwapLayoutStatus();
+  const isCurrentUserPodOwner = getCurrentUserIsPodOwner(podId);
+  const currentSlide = getCurrentSlideByPod(podId);
+  const isMultiUserActive = getMultiUserStatusByWhiteboard(currentSlide && currentSlide.id);
+  return {
+    currentSlide,
+    userIsPresenter: isCurrentUserPodOwner && !isLayoutSwaped,
+    multiUser: isMultiUserActive && !isLayoutSwaped,
+    ...props,
+  };
+})(PresentationArea);
 
 PresentationArea.propTypes = {
   podId: PropTypes.string.isRequired,

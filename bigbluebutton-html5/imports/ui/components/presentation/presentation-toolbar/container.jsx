@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import PresentationService from '/imports/ui/components/presentation/service';
+import { getCurrentUserIsPodOwner } from '/imports/ui/selectors/PresentationPodSelectors';
 import PresentationToolbarService from './service';
 import PresentationToolbar from './component';
 
@@ -45,7 +45,7 @@ export default withTracker((params) => {
 
   return {
     fitToWidthHandler: params.fitToWidthHandler,
-    userIsPresenter: PresentationService.isPresenter(podId),
+    userIsPresenter: getCurrentUserIsPodOwner(podId),
     numberOfSlides,
     zoom: params.zoom,
     zoomChanger: params.zoomChanger,
