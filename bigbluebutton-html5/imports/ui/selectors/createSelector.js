@@ -18,7 +18,6 @@ export const createSelector = (...funcs) => {
   const resultFunc = funcs.pop();
   const dependencies = getDependencies(funcs);
 
-
   const selector = function selector() {
     const params = [];
     const { length } = dependencies;
@@ -28,7 +27,6 @@ export const createSelector = (...funcs) => {
       // eslint-disable-next-line prefer-rest-params
       params.push(dependencies[i].apply(null, arguments));
     }
-
     // apply arguments instead of spreading for performance.
     // eslint-disable-next-line prefer-spread
     return resultFunc.apply(null, params);
@@ -39,6 +37,15 @@ export const createSelector = (...funcs) => {
   return selector;
 };
 
+// This is just a proof of concept to make the transition to reselect easier in the future
+export const injectState = (selector) => {
+  const { dependencies } = selector;
+  const getStateSelector = dependencies[0];
+  const resultStateSelector = getStateSelector();
+  return selector.bind(null, resultStateSelector);
+};
+
 export default {
   createSelector,
+  injectState,
 };

@@ -1,25 +1,28 @@
 /* eslint import/prefer-default-export: 0 */
-import PresentationPods from '/imports/api/presentation-pods';
-import { createSelector } from './createSelector';
+import { createSelector, injectState } from './createSelector';
 import { getCurrentUserId } from './UserSelectors';
+import { getIdToFetch } from './CommonSelectors';
+import { getPresentationPods } from './PresentationPodsSelectors';
 
-export const getPresentationPod = podId => PresentationPods.findOne({ podId });
+export const getPresentationPodSelector = createSelector(
+  getPresentationPods,
+  getIdToFetch,
+  (state, id) => state && id in state && state[id],
+);
+
+export const getPresentationPod = injectState(getPresentationPodSelector);
 
 export const getPresentationPodOwner = (podId) => {
-  const selector = createSelector(
+  return createSelector(
     getPresentationPod.bind(null, podId),
     pod => pod && pod.currentPresenterId,
-  );
-
-  return selector(podId);
+  )();
 };
 
 export const getCurrentUserIsPodOwner = (podId) => {
-  const selector = createSelector(
+  return createSelector(
     getCurrentUserId,
     getPresentationPod.bind(null, podId),
     (currentUserId, pod) => pod && currentUserId === pod.currentPresenterId,
-  );
-
-  return selector(podId);
+  )();
 };

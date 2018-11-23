@@ -2,7 +2,12 @@
 import Auth from '/imports/ui/services/auth/index';
 import { createSelector } from './createSelector';
 
-export const getCredentials = () => Auth.credentials;
+export const getAuth = () => Auth;
+
+export const getCredentials = createSelector(
+  getAuth,
+  auth => auth.credentials,
+);
 
 export const getSessionToken = createSelector(
   getCredentials,

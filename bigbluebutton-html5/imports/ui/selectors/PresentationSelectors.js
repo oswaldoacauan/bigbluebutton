@@ -1,6 +1,12 @@
 /* eslint import/prefer-default-export: 0 */
-import Presentations from '/imports/api/presentations';
+import { createSelector, injectState } from './createSelector';
+import { getIdToFetch } from './CommonSelectors';
+import { getPresentations } from './PresentationsSelectors';
 
-export const getPresentation = presentationId => Presentations.findOne({ 'presentation.id': presentationId });
+export const getPresentationSelector = createSelector(
+  getPresentations,
+  getIdToFetch,
+  (state, id) => state && id in state && state[id],
+);
 
-export const getCurrentPresentationByPod = podId => Presentations.findOne({ podId, current: true });
+export const getPresentation = injectState(getPresentationSelector);
