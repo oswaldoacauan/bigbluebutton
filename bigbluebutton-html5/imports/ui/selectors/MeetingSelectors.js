@@ -1,5 +1,5 @@
 /* eslint import/prefer-default-export: 0 */
-import { createSelector } from './createSelector';
+import { createSelector } from 'reselect';
 import { getCredentials } from './AuthSelectors';
 import { getMeetings } from './MeetingsSelectors';
 

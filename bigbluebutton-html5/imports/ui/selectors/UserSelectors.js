@@ -1,5 +1,6 @@
 /* eslint import/prefer-default-export: 0 */
-import { createSelector, injectState } from './createSelector';
+import { createSelector } from 'reselect';
+import { injectState } from './createSelector';
 import { getCredentials } from './AuthSelectors';
 import { getIdToFetch } from './CommonSelectors';
 import { getUsers } from './UsersSelectors';

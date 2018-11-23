@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: 0 */
 import Users from '/imports/api/users';
 import { normalize, schema } from 'normalizr';
-import { createSelector } from './createSelector';
+import { createSelector } from 'reselect';
 
 export const schemaUser = new schema.Entity('users', {}, { idAttribute: 'userId' });
 

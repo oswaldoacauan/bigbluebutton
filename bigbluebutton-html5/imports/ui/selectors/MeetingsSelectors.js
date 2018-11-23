@@ -2,7 +2,7 @@
 import Meetings from '/imports/api/meetings';
 import { normalize, schema } from 'normalizr';
 
-import { createSelector } from './createSelector';
+import { createSelector } from 'reselect';
 
 export const schemaMeeting = new schema.Entity('meetings', {}, { idAttribute: 'meetingId' });
 

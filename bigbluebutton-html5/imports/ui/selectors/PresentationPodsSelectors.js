@@ -1,13 +1,14 @@
 /* eslint import/prefer-default-export: 0 */
 import PresentationPods from '/imports/api/presentation-pods';
 import { normalize, schema } from 'normalizr';
-import { createSelector } from './createSelector';
+import { createSelector } from 'reselect';
+import { cloneDeep } from 'lodash';
 
 export const schemaPresentation = new schema.Entity('presentationPods', {}, { idAttribute: 'podId' });
 
 export const schemaPresentationPods = new schema.Array(schemaPresentation);
 
-export const getPresentationPodsRaw = () => PresentationPods.find().fetch();
+export const getPresentationPodsRaw = () => cloneDeep(PresentationPods.find().fetch());
 
 export const getPresentationPodsNormalized = createSelector(
   getPresentationPodsRaw,

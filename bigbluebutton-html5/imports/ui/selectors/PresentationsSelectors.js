@@ -1,13 +1,14 @@
 /* eslint import/prefer-default-export: 0 */
 import Presentations from '/imports/api/presentations';
 import { normalize, schema } from 'normalizr';
-import { createSelector } from './createSelector';
+import { createSelector } from 'reselect';
+import { cloneDeep } from 'lodash';
 
 export const schemaPresentation = new schema.Entity('presentations');
 
 export const schemaPresentations = new schema.Array(schemaPresentation);
 
-export const getPresentationsRaw = () => Presentations.find().fetch();
+export const getPresentationsRaw = () => cloneDeep(Presentations.find().fetch());
 
 export const getPresentationsNormalized = createSelector(
   getPresentationsRaw,
